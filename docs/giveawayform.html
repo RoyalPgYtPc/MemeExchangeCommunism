@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>10M Giveaway Entry — r/MemeExchangeCommunism</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── tokens ── */
+:root{
+  --o:       #ff4500;
+  --oh:      #e03d00;
+  --os:      rgba(255,69,0,.10);
+  --ol:      rgba(255,69,0,.20);
+  --gold:    #f5c518;
+  --green:   #22c997;
+  --r:       12px;
+  --ease:    cubic-bezier(.22,1,.36,1);
+  --easeb:   cubic-bezier(.34,1.56,.64,1);
+}
+
+/* ── dark (default) ── */
+html, html[data-theme="dark"]{
+  --bg:      #0a0a0b;
+  --bg1:     #0f0f11;
+  --bg2:     #141416;
+  --bg3:     #1a1a1e;
+  --bg4:     #222228;
+  --line:    rgba(255,255,255,.07);
+  --line2:   rgba(255,255,255,.03);
+  --tx:      #f0f0f4;
+  --tx2:     rgba(240,240,244,.55);
+  --tx3:     rgba(240,240,244,.28);
+  --tx4:     rgba(240,240,244,.10);
+  --nav-bg:  rgba(10,10,11,.88);
+  --grid-ln: rgba(255,255,255,.045);
+  --glow:    rgba(255,69,0,.12);
+}
+
+/* ── light ── */
+html[data-theme="light"]{
+  --bg:      #fafafa;
+  --bg1:     #f5f5f7;
+  --bg2:     #ffffff;
+  --bg3:     #f0f0f3;
+  --bg4:     #e8e8ec;
+  --line:    rgba(0,0,0,.07);
+  --line2:   rgba(0,0,0,.04);
+  --tx:      #111113;
+  --tx2:     rgba(17,17,19,.52);
+  --tx3:     rgba(17,17,19,.30);
+  --tx4:     rgba(17,17,19,.10);
+  --nav-bg:  rgba(250,250,250,.90);
+  --grid-ln: rgba(0,0,0,.04);
+  --glow:    rgba(255,69,0,.07);
+}
+
+/* ── reset ── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{
+  background:var(--bg);
+  color:var(--tx);
+  font-family:'Geist',system-ui,sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+  min-height:100vh;
+}
+::selection{background:var(--o);color:#fff;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--line);border-radius:2px;}
+::-webkit-scrollbar-thumb:hover{background:var(--o);}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+
+/* ── animated grid bg ── */
+body::before{
+  content:'';
+  position:fixed;inset:0;z-index:0;
+  background-image:
+    linear-gradient(var(--grid-ln) 1px,transparent 1px),
+    linear-gradient(90deg,var(--grid-ln) 1px,transparent 1px);
+  background-size:64px 64px;
+  animation:gridDrift 40s linear infinite;
+  mask-image:radial-gradient(ellipse 90% 70% at 50% 30%,rgba(0,0,0,.4),transparent 80%);
+  pointer-events:none;
+  transition:background-image .35s;
+}
+@keyframes gridDrift{to{background-position:64px 64px;}}
+
+body::after{
+  content:'';
+  position:fixed;inset:0;z-index:0;
+  background:
+    radial-gradient(ellipse 55% 40% at 50% -5%,var(--glow) 0%,transparent 65%),
+    radial-gradient(ellipse 30% 30% at 90% 90%,rgba(245,197,24,.03) 0%,transparent 55%);
+  pointer-events:none;
+  transition:background .35s;
+}
+
+/* ── nav ── */
+.nav{
+  position:sticky;top:0;z-index:200;
+  height:58px;
+  background:var(--nav-bg);
+  transition:background .35s var(--ease);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(20px) saturate(160%);
+  -webkit-backdrop-filter:blur(20px) saturate(160%);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(1rem,4vw,2.5rem);
+}
+.nbrand{
+  display:flex;align-items:center;gap:10px;
+  font-weight:700;font-size:.88rem;
+  color:var(--tx);letter-spacing:-.2px;
+}
+.nlogo{
+  width:30px;height:30px;background:var(--o);
+  border-radius:8px;display:flex;
+  align-items:center;justify-content:center;flex-shrink:0;
+  transition:transform .3s var(--easeb);
+}
+.nbrand:hover .nlogo{transform:rotate(-12deg) scale(1.1);}
+.nlinks{display:flex;gap:2px;}
+.nlinks a{
+  font-size:.8rem;font-weight:500;color:var(--tx3);
+  padding:5px 11px;border-radius:6px;
+  transition:color .15s,background .15s;
+}
+.nlinks a:hover{color:var(--tx);background:var(--bg3);}
+@media(max-width:700px){.nlinks{display:none;}}
+.njoin{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--o);color:#fff;
+  border:none;border-radius:8px;
+  padding:7px 16px;
+  font-family:'Geist',sans-serif;
+  font-size:.82rem;font-weight:700;cursor:pointer;
+  transition:background .2s,transform .2s,box-shadow .2s;
+  text-decoration:none;
+}
+.njoin:hover{background:var(--oh);transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,69,0,.35);}
+
+/* theme toggle */
+.theme-btn{
+  width:32px;height:32px;border-radius:8px;
+  background:var(--bg3);border:1px solid var(--line);
+  color:var(--tx3);cursor:pointer;
+  display:flex;align-items:center;justify-content:center;
+  transition:all .2s;flex-shrink:0;
+}
+.theme-btn:hover{color:var(--tx);border-color:var(--ol);background:var(--os);}
+
+/* ── page wrapper ── */
+.page{
+  position:relative;z-index:1;
+  max-width:780px;margin:0 auto;
+  padding:clamp(2.5rem,6vw,5rem) clamp(1rem,4vw,2rem) clamp(3rem,6vw,6rem);
+}
+
+/* ── eyebrow pill ── */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--os);border:1px solid var(--ol);
+  color:var(--o);
+  font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  padding:5px 14px;border-radius:100px;
+  margin-bottom:1.8rem;
+  animation:fadeUp .5s var(--ease) both;
+}
+.eyebrow-dot{width:6px;height:6px;background:var(--o);border-radius:50%;animation:pulse 2s ease infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.7);}}
+
+/* ── hero heading ── */
+.hero-h{
+  font-family:'Instrument Serif',Georgia,serif;
+  font-size:clamp(2.2rem,5vw,3.4rem);
+  line-height:.97;letter-spacing:-1.5px;
+  margin-bottom:1rem;
+  animation:fadeUp .5s .06s var(--ease) both;
+}
+.hero-h em{color:var(--o);font-style:italic;}
+
+.hero-p{
+  font-size:clamp(.88rem,1.8vw,.98rem);
+  font-weight:300;color:var(--tx2);
+  line-height:1.72;max-width:520px;
+  margin-bottom:2rem;
+  animation:fadeUp .5s .12s var(--ease) both;
+}
+
+/* ── stats strip ── */
+.stats{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  border:1px solid var(--line);border-radius:var(--r);
+  overflow:hidden;margin-bottom:2.5rem;
+  animation:fadeUp .5s .18s var(--ease) both;
+}
+@media(max-width:520px){
+  .stats{grid-template-columns:repeat(2,1fr);}
+  .stat:nth-child(1),.stat:nth-child(2){border-bottom:1px solid var(--line);}
+  .stat:nth-child(2){border-right:none;}
+}
+.stat{
+  background:var(--bg2);padding:1.1rem .8rem;text-align:center;
+  border-right:1px solid var(--line);transition:background .2s;cursor:default;
+  position:relative;overflow:hidden;
+}
+.stat:last-child{border-right:none;}
+.stat::after{
+  content:'';position:absolute;bottom:0;left:0;right:0;height:2px;
+  background:var(--o);transform:scaleX(0);transform-origin:left;
+  transition:transform .3s var(--ease);
+}
+.stat:hover{background:var(--bg3);}
+.stat:hover::after{transform:scaleX(1);}
+.si{font-size:.9rem;margin-bottom:4px;opacity:.6;}
+.sv{
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(1.2rem,2.5vw,1.5rem);
+  color:var(--tx);line-height:1;margin-bottom:3px;
+}
+.sl{font-size:.58rem;color:var(--tx3);letter-spacing:1.5px;text-transform:uppercase;font-weight:600;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+
+/* ── progress bar ── */
+.prog-wrap{
+  display:flex;align-items:center;gap:14px;
+  padding:1rem 1.6rem;
+  background:var(--bg2);
+  border:1px solid var(--line);
+  border-radius:var(--r) var(--r) 0 0;
+  border-bottom:none;
+  animation:fadeUp .5s .22s var(--ease) both;
+}
+.prog-track{flex:1;height:4px;background:var(--bg4);border-radius:3px;overflow:hidden;}
+.prog-fill{
+  height:100%;
+  background:linear-gradient(90deg,var(--o),#ff7a45);
+  border-radius:3px;width:0%;
+  transition:width .4s cubic-bezier(.4,0,.2,1);
+}
+.prog-txt{
+  font-size:.75rem;font-weight:700;color:var(--o);
+  white-space:nowrap;min-width:52px;text-align:right;
+  font-variant-numeric:tabular-nums;
+}
+
+/* ── form card ── */
+.form-head{
+  background:var(--o);
+  padding:clamp(1.2rem,3vw,1.8rem) clamp(1.4rem,3vw,2.2rem);
+  position:relative;overflow:hidden;
+}
+.form-head::before{
+  content:'';position:absolute;
+  top:-60px;right:-60px;
+  width:220px;height:220px;
+  background:rgba(255,255,255,.07);
+  border-radius:50%;pointer-events:none;
+}
+.form-head::after{
+  content:'';position:absolute;
+  bottom:-30px;left:40%;
+  width:120px;height:120px;
+  background:rgba(0,0,0,.07);
+  border-radius:50%;pointer-events:none;
+}
+.form-head h2{
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(1.2rem,3vw,1.6rem);
+  color:#fff;margin-bottom:.3rem;
+  position:relative;z-index:1;
+  letter-spacing:-.3px;
+}
+.form-head p{font-size:.8rem;color:rgba(255,255,255,.72);position:relative;z-index:1;}
+
+.form-body{
+  background:var(--bg1);
+  border:1px solid var(--line);
+  border-top:none;
+  border-radius:0 0 var(--r) var(--r);
+  overflow:hidden;
+}
+
+/* ── question rows ── */
+.q{
+  padding:clamp(1rem,2.5vw,1.5rem) clamp(1.2rem,3vw,2rem);
+  border-bottom:1px solid var(--line2);
+  /* reveal animation handled by JS */
+  opacity:0;
+  transform:translateY(10px);
+  transition:opacity .35s var(--ease),transform .35s var(--ease);
+}
+.q.vis{opacity:1;transform:none;}
+.q:last-of-type{border-bottom:none;}
+
+.ql{
+  font-weight:600;font-size:.88rem;
+  margin-bottom:.75rem;color:var(--tx);
+  display:flex;align-items:flex-start;gap:6px;line-height:1.45;
+}
+.req{color:var(--o);}
+.q-num{
+  color:var(--tx3);font-weight:400;
+  font-family:'Instrument Serif',serif;
+  font-size:1rem;line-height:1;
+  margin-right:2px;flex-shrink:0;
+}
+
+/* ── inputs ── */
+.field{
+  width:100%;padding:10px 13px;
+  background:var(--bg3);
+  border:1.5px solid var(--line);
+  border-radius:9px;
+  font-family:'Geist',sans-serif;
+  font-size:.88rem;color:var(--tx);
+  outline:none;
+  transition:border-color .2s,box-shadow .2s,background .2s;
+}
+.field::placeholder{color:var(--tx3);}
+.field:focus{
+  border-color:var(--o);
+  background:var(--bg2);
+  box-shadow:0 0 0 3px rgba(255,69,0,.12);
+}
+textarea.field{min-height:80px;resize:vertical;line-height:1.55;}
+
+/* ── options ── */
+.opts{display:flex;flex-direction:column;gap:6px;}
+.opt{
+  display:flex;align-items:center;gap:11px;
+  padding:10px 13px;
+  border:1.5px solid var(--line);
+  border-radius:9px;
+  background:var(--bg3);
+  cursor:pointer;
+  transition:border-color .18s,background .18s,box-shadow .18s;
+  user-select:none;
+}
+.opt:hover{border-color:rgba(255,255,255,.14);background:var(--bg2);}
+.opt:has(input:checked){
+  border-color:var(--ol);
+  background:rgba(255,69,0,.07);
+  box-shadow:0 0 0 3px rgba(255,69,0,.06);
+}
+.opt input{
+  width:16px;height:16px;
+  accent-color:var(--o);cursor:pointer;flex-shrink:0;
+}
+.otxt{font-size:.86rem;font-weight:500;line-height:1.4;}
+.on{color:var(--o);font-weight:700;margin-right:3px;font-variant-numeric:tabular-nums;}
+
+/* ── EULA box ── */
+.eula-notice{
+  background:rgba(255,69,0,.06);
+  border:1px solid var(--ol);
+  border-radius:9px;
+  padding:.9rem 1.1rem;
+  margin-bottom:.75rem;
+}
+.eula-notice p{
+  font-size:.78rem;color:var(--tx2);
+  margin-bottom:.4rem;line-height:1.5;
+}
+.eula-notice a{
+  color:var(--o);font-weight:600;
+  display:inline-flex;align-items:center;gap:5px;
+  font-size:.8rem;
+}
+.eula-notice a:hover{text-decoration:underline;}
+
+/* ── submit bar ── */
+.sbar{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  padding:1.2rem clamp(1.2rem,3vw,2rem);
+  background:var(--bg2);
+  border-top:1px solid var(--line);
+  flex-wrap:wrap;
+}
+@media(max-width:480px){
+  .sbar{flex-direction:column-reverse;align-items:stretch;}
+  .bsub{justify-content:center;}
+}
+.bsub{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--o);color:#fff;
+  border:none;border-radius:9px;
+  padding:11px clamp(1.4rem,3.5vw,2rem);
+  font-family:'Geist',sans-serif;font-size:.9rem;font-weight:700;
+  cursor:pointer;
+  box-shadow:0 3px 18px rgba(255,69,0,.3);
+  transition:background .2s,transform .2s,box-shadow .2s;
+  white-space:nowrap;
+}
+.bsub:hover{background:var(--oh);transform:translateY(-2px);box-shadow:0 7px 24px rgba(255,69,0,.42);}
+.bsub:active{transform:translateY(0);}
+.bsub.loading{opacity:.7;pointer-events:none;}
+.bdot{width:7px;height:7px;background:rgba(255,255,255,.7);border-radius:50%;}
+.bclr{
+  background:none;border:none;color:var(--tx3);
+  font-family:'Geist',sans-serif;font-size:.8rem;
+  cursor:pointer;text-decoration:underline;padding:4px;
+  transition:color .15s;
+}
+.bclr:hover{color:var(--tx2);}
+
+/* ── spinner ── */
+.spin{
+  width:15px;height:15px;
+  border:2px solid rgba(255,255,255,.35);
+  border-top-color:#fff;
+  border-radius:50%;
+  animation:spin .65s linear infinite;
+}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+/* ── validation error ── */
+.errmsg{
+  display:none;
+  background:rgba(192,57,43,.10);
+  border:1px solid rgba(192,57,43,.30);
+  border-radius:9px;
+  padding:.8rem 1.1rem;
+  margin:0 clamp(1.2rem,3vw,2rem) .8rem;
+  font-size:.82rem;color:#e05a4a;line-height:1.5;
+}
+.field-err{border-color:#c0392b !important;}
+
+/* ── success screen ── */
+#success{
+  display:none;
+  background:var(--bg1);
+  border:1px solid var(--line);
+  border-radius:var(--r);
+  padding:clamp(2.5rem,7vw,5rem) 2rem;
+  text-align:center;
+  animation:fadeUp .5s var(--ease) both;
+}
+.sring{
+  width:68px;height:68px;
+  background:var(--o);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.5rem;
+  font-size:1.7rem;
+  box-shadow:0 0 0 12px rgba(255,69,0,.12),0 0 0 24px rgba(255,69,0,.05);
+  animation:ringPop .5s .1s var(--easeb) both;
+}
+@keyframes ringPop{from{transform:scale(.6);opacity:0;}to{transform:scale(1);opacity:1;}}
+#success h3{
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(1.6rem,3vw,2.2rem);
+  letter-spacing:-.4px;
+  margin-bottom:.6rem;
+}
+#success p{color:var(--tx2);font-size:.9rem;line-height:1.65;}
+#success .sub-link{
+  display:inline-flex;align-items:center;gap:7px;
+  margin-top:1.8rem;
+  background:var(--o);color:#fff;
+  padding:10px 22px;border-radius:9px;
+  font-weight:700;font-size:.88rem;
+  transition:background .2s,transform .2s;
+}
+#success .sub-link:hover{background:var(--oh);transform:translateY(-2px);}
+
+/* ── form wrapper animation ── */
+.form-wrapper{animation:fadeUp .5s .26s var(--ease) both;}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <a class="nbrand" href="memeexchangecommunism.html">
+    <div class="nlogo">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </div>
+    r/MemeExchangeCommunism
+  </a>
+  <nav class="nlinks">
+    <a href="index.html">About</a>
+    <a href="index.html#achievements">Achievements</a>
+    <a href="index.html#currency">Meme Currency</a>
+    <a href="index.html#elections">Elections</a>
+    <a href="index.html#mods">Moderators</a>
+    <a href="index.html#faq">FAQ</a>
+    <a href="news.html">News</a>
+  </nav>
+  <div style="display:flex;align-items:center;gap:8px;">
+    <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">
+      <!-- sun icon (shown in dark mode) -->
+      <svg id="ico-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <!-- moon icon (shown in light mode) -->
+      <svg id="ico-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <a class="njoin" href="https://www.reddit.com/r/memeexchangecommunism/" target="_blank">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M17.5 13c0-1.1-.9-2-2-2-.5 0-.9.2-1.3.5C13.1 11 12 10.4 12 10.4l.3-1.4 1.9.4c.1.6.6 1 1.2 1 .7 0 1.2-.5 1.2-1.2S16.1 8 15.4 8c-.5 0-.9.2-1.1.6L12.2 8l-.5 2.2c-1 0-1.9.6-2.9 1.1-.4-.3-.8-.5-1.3-.5-1.1 0-2 .9-2 2 0 .8.5 1.5 1.2 1.8v.4c0 1.8 2 3.2 4.4 3.2s4.4-1.4 4.4-3.2v-.4c.6-.3 1.1-1 1-1.6zm-9 0c0-.4.3-.8.8-.8s.8.3.8.8-.3.8-.8.8-.8-.3-.8-.8zm5.1 2.8c-.6.4-1.3.5-1.9.5s-1.3-.2-1.9-.5c-.1-.1-.1-.3 0-.3.1-.1.2-.1.3 0 .5.3 1 .4 1.6.4s1.1-.1 1.6-.4c.1-.1.2 0 .3 0 .1.1.1.2 0 .3zm-.3-2c-.4 0-.8-.3-.8-.8s.3-.8.8-.8.8.3.8.8-.3.8-.8.8z" fill="currentColor"/></svg>
+      Join on Reddit
+    </a>
+  </div>
+</nav>
+
+<div class="page">
+
+  <!-- HERO -->
+  <div class="eyebrow"><span class="eyebrow-dot"></span> 10M MILESTONE GIVEAWAY</div>
+  <h1 class="hero-h">Win <em>Meme Currency.</em><br>Enter below.</h1>
+  <p class="hero-p">We just hit 10 million total views. To celebrate, we're giving away MC to community members. Fill out the form — winners picked randomly from valid entries.</p>
+
+  <!-- STATS -->
+  <div class="stats">
+    <div class="stat"><div class="si">👁</div><div class="sv">10.0m</div><div class="sl">Views</div></div>
+    <div class="stat"><div class="si">👥</div><div class="sv">36.9k</div><div class="sl">Members</div></div>
+    <div class="stat"><div class="si">📋</div><div class="sv">11.2k</div><div class="sl">Posts</div></div>
+    <div class="stat"><div class="si">💬</div><div class="sv">745k</div><div class="sl">Comments</div></div>
+  </div>
+
+  <!-- FORM WRAPPER -->
+  <div class="form-wrapper">
+
+    <!-- PROGRESS -->
+    <div class="prog-wrap" id="prog-wrap">
+      <div class="prog-track"><div class="prog-fill" id="pf"></div></div>
+      <span class="prog-txt" id="pt">0 / 12</span>
+    </div>
+
+    <!-- HEAD -->
+    <div class="form-head" id="form-head">
+      <h2>Meme Currency 10M Giveaway Entry</h2>
+      <p>All fields marked * are required. Winners selected randomly.</p>
+    </div>
+
+    <!-- Hidden iframe — form posts here to avoid page reload -->
+    <iframe name="gf_target" id="gf_target" style="display:none" aria-hidden="true"></iframe>
+
+    <!-- FORM -->
+    <form
+      class="form-body"
+      id="gform"
+      action="https://docs.google.com/forms/d/e/1FAIpQLSdw9OaGjAJCHBoBtSOVh-u9Kv5cHtlWsW2525P4Eft_-sHvxg/formResponse"
+      method="POST"
+      target="gf_target"
+      onsubmit="return doSubmit(event)"
+      novalidate>
+
+      <!-- Q1 -->
+      <div class="q">
+        <div class="ql"><span class="q-num">1.</span> Reddit Username <span class="req">*</span></div>
+        <input class="field" type="text" name="entry.110369550" id="f-reddit" placeholder="u/yourname" autocomplete="off">
+      </div>
+
+      <!-- Q2 -->
+      <div class="q">
+        <div class="ql"><span class="q-num">2.</span> Discord Username <span style="color:var(--tx3);font-weight:300;font-size:.78rem;"> — optional</span></div>
+        <input class="field" type="text" name="entry.639932412" placeholder="yourname or yourname#0000" autocomplete="off">
+      </div>
+
+      <!-- Q3 -->
+      <div class="q">
+        <div class="ql"><span class="q-num">3.</span> Are you in our Discord server? <span class="req">*</span></div>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="entry.1322817154" value="Yes"><span class="otxt">Yes</span></label>
+          <label class="opt"><input type="radio" name="entry.1322817154" value="No"><span class="otxt">No</span></label>
+        </div>
+      </div>
+
+      <!-- Q4 -->
+      <div class="q">
+        <div class="ql"><span class="q-num">4.</span> How long have you been a member? <span class="req">*</span></div>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="entry.1499019517" value="Less than 1 week"><span class="otxt"><span class="on">A.</span> Less than 1 week</span></label>
+          <label class="opt"><input type="radio" name="entry.1499019517" value="1-4 weeks"><span class="otxt"><span class="on">B.</span> 1–4 weeks</span></label>
+          <label class="opt"><input type="radio" name="entry.1499019517" value="1-3 months"><span class="otxt"><span class="on">C.</span> 1–3 months</span></label>
+          <label class="opt"><input type="radio" name="entry.1499019517" value="3+ months"><span class="otxt"><span class="on">D.</span> 3+ months</span></label>
+        </div>
+      </div>
+
+      <!-- Q5 -->
+      <div class="q">
+        <div class="ql"><span class="q-num">5.</span> How often do you use MemeCoin? <span class="req">*</span></div>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="entry.645877340" value="Daily"><span class="otxt">Daily</span></label>
+          <label class="opt"><input type="radio" name="entry.645877340" value="Few times a week"><span class="otxt">Few times a week</span></label>
+          <label class="opt"><input type="radio" name="entry.645877340" value="Occasionally"><span class="otxt">Occasionally</span></label>
+        </div>
+      </div>
+
+      <!-- Q6 -->
+      <div class="q">
+        <div class="ql"><span class="q-num">6.</span> What do you usually do on the subreddit? <span class="req">*</span></div>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="entry.1696451627" value="Post memes"><span class="otxt">Post memes</span></label>
+          <label class="opt"><input type="radio" name="entry.1696451627" value="Comment"><span class="otxt">Comment</span></label>
+          <label class="opt"><input type="radio" name="entry.1696451627" value="Use MemeCoin features"><span class="otxt">Use MemeCoin features</span></label>
+          <label class="opt"><input type="radio" name="entry.1696451627" value="Mostly browse"><span class="otxt">Mostly browse</span></label>
+        </div>
+      </div>
+
+      <!-- Q7 -->
+      <div class="q">
+        <div class="ql"><span class="q-num">7.</span> Which MemeCoin feature do you use most? <span class="req">*</span></div>
+        <div class="opts">
+          <label class="opt"><input type="radio" name="entry.980991148" value="Rewards"><span class="otxt">Rewards</span></label>
+          <label class="opt"><input type="radio" name="entry.980991148" value="Shops"><span class="otxt">Shops</span></label>
+          <label class="opt"><input type="radio" name="entry.980991148" value="Events"><span class="otxt">Events</span></label>
+          <label class="opt"><input type="radio" name="entry.980991148" value="Transfers"><span class="otxt">Transfers</span></label>
+          <label class="opt"><input type="radio" name="entry.980991148" value="Other"><span class="otxt">Other</span></label>
+        </div>
+      </div>
+
+      <!-- Q8 -->
+      <div class="q">
+        <div class="ql"><span class="q-num">8.</span> What is your current MC balance? <span class="req">*</span></div>
+        <input class="field" type="text" name="entry.1686519" placeholder="e.g. 500 MC" autocomplete="off">
+      </div>
+
+      <!-- Q9 -->
+      <div class="q">
+        <div class="ql"><span class="q-num">9.</span> Describe a recent MemeCoin interaction <span class="req">*</span></div>
+        <textarea class="field" name="entry.687701087" placeholder="Tell us about a recent experience…"></textarea>
+      </div>
+
+      <!-- Q10 -->
+      <div class="q">
+        <div class="ql"><span class="q-num">10.</span> What do you like most about MemeCoin? <span class="req">*</span></div>
+        <textarea class="field" name="entry.1300445489" placeholder="Share your favourite thing…"></textarea>
+      </div>
+
+      <!-- Q11 -->
+      <div class="q">
+        <div class="ql"><span class="q-num">11.</span> What would you improve? <span class="req">*</span></div>
+        <textarea class="field" name="entry.715319499" placeholder="Any suggestions or feedback…"></textarea>
+      </div>
+
+      <!-- Q12 — alt account confirm -->
+      <div class="q">
+        <div class="ql"><span class="q-num">12.</span> Confirm you are not using alternate accounts <span class="req">*</span></div>
+        <div class="opts">
+          <label class="opt">
+            <input type="checkbox" name="entry.950331737" value="I Confirm I'm not using any alt accounts">
+            <span class="otxt">I confirm I'm not using any alt accounts</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Q13 — EULA -->
+      <div class="q">
+        <div class="eula-notice">
+          <p>Please read the giveaway terms before accepting. <em>(We promise we're not actually asking for your kidneys.)</em></p>
+          <a href="10meula.html" target="_blank">
+            Read the 10M Milestone Giveaway Terms
+            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+          </a>
+        </div>
+        <div class="opts">
+          <label class="opt">
+            <input type="checkbox" name="entry.1967557164" value="I Accept the EULA">
+            <span class="otxt">I accept the EULA</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Error -->
+      <div class="errmsg" id="errmsg">
+        ⚠ Please fill in all required fields marked with * before submitting.
+      </div>
+
+      <!-- Submit bar -->
+      <div class="sbar">
+        <button type="button" class="bclr" onclick="clearForm()">Clear all answers</button>
+        <button type="submit" class="bsub" id="sbtn">
+          <span id="bdot" class="bdot"></span>
+          <span id="blbl">Submit Entry</span>
+        </button>
+      </div>
+
+    </form>
+
+    <!-- SUCCESS -->
+    <div id="success">
+      <div class="sring">🎉</div>
+      <h3>Entry submitted!</h3>
+      <p>Your response has been recorded.<br>Winners will be announced on the subreddit. Good luck!</p>
+      <a class="sub-link" href="https://www.reddit.com/r/memeexchangecommunism/" target="_blank">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M17.5 13c0-1.1-.9-2-2-2-.5 0-.9.2-1.3.5C13.1 11 12 10.4 12 10.4l.3-1.4 1.9.4c.1.6.6 1 1.2 1 .7 0 1.2-.5 1.2-1.2S16.1 8 15.4 8c-.5 0-.9.2-1.1.6L12.2 8l-.5 2.2c-1 0-1.9.6-2.9 1.1-.4-.3-.8-.5-1.3-.5-1.1 0-2 .9-2 2 0 .8.5 1.5 1.2 1.8v.4c0 1.8 2 3.2 4.4 3.2s4.4-1.4 4.4-3.2v-.4c.6-.3 1.1-1 1-1.6zm-9 0c0-.4.3-.8.8-.8s.8.3.8.8-.3.8-.8.8-.8-.3-.8-.8zm5.1 2.8c-.6.4-1.3.5-1.9.5s-1.3-.2-1.9-.5c-.1-.1-.1-.3 0-.3.1-.1.2-.1.3 0 .5.3 1 .4 1.6.4s1.1-.1 1.6-.4c.1-.1.2 0 .3 0 .1.1.1.2 0 .3zm-.3-2c-.4 0-.8-.3-.8-.8s.3-.8.8-.8.8.3.8.8-.3.8-.8.8z" fill="currentColor"/></svg>
+        Back to the subreddit
+      </a>
+    </div>
+
+  </div><!-- /form-wrapper -->
+</div><!-- /page -->
+
+<script>
+// ── theme toggle ──
+function toggleTheme() {
+  var h = document.documentElement;
+  var isDark = h.getAttribute('data-theme') !== 'light';
+  h.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  document.getElementById('ico-sun').style.display  = isDark ? 'none'  : 'block';
+  document.getElementById('ico-moon').style.display = isDark ? 'block' : 'none';
+}
+// set initial data-theme so CSS vars resolve correctly
+document.documentElement.setAttribute('data-theme', 'dark');
+
+// ── tracked fields for progress ──
+var FIELDS = [
+  'entry.110369550',   // reddit username
+  'entry.1322817154',  // discord member
+  'entry.1499019517',  // how long
+  'entry.645877340',   // how often
+  'entry.1696451627',  // what do you do
+  'entry.980991148',   // feature
+  'entry.1686519',     // balance
+  'entry.687701087',   // recent interaction
+  'entry.1300445489',  // like most
+  'entry.715319499',   // improve
+  'entry.950331737',   // no alts
+  'entry.1967557164'   // eula
+];
+
+// required fields (subset used for validation)
+var REQUIRED = FIELDS; // all are required
+
+// ── state ──
+var submitted = false;
+
+// ── progress ──
+function updateProgress() {
+  var f = document.getElementById('gform'), done = 0;
+  FIELDS.forEach(function(n) {
+    var el = f.elements[n];
+    if (!el) return;
+    if (el.type === 'checkbox') { if (el.checked) done++; }
+    else if (el.length !== undefined && el.value !== undefined && el.constructor.name === 'RadioNodeList') {
+      if (el.value) done++;
+    }
+    else if (el instanceof NodeList || (el.length && el[0] && el[0].type === 'radio')) {
+      // radio group via name — check if any selected
+      var radios = f.querySelectorAll('input[name="' + n + '"]');
+      if (radios.length) {
+        for (var i = 0; i < radios.length; i++) { if (radios[i].checked) { done++; break; } }
+      }
+    }
+    else { if (el.value && el.value.trim()) done++; }
+  });
+  document.getElementById('pf').style.width = Math.round(done / FIELDS.length * 100) + '%';
+  document.getElementById('pt').textContent = done + ' / ' + FIELDS.length;
+}
+
+document.getElementById('gform').addEventListener('input', updateProgress);
+document.getElementById('gform').addEventListener('change', updateProgress);
+
+// ── scroll reveal for questions ──
+var qObs = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting) { e.target.classList.add('vis'); qObs.unobserve(e.target); }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.q').forEach(function(q) { qObs.observe(q); });
+
+// ── validation ──
+function getFieldValue(f, name) {
+  var el = f.elements[name];
+  if (!el) {
+    // try as radio group
+    var radios = f.querySelectorAll('input[name="' + name + '"]');
+    if (radios.length) {
+      for (var i = 0; i < radios.length; i++) { if (radios[i].checked) return radios[i].value; }
+      return '';
+    }
+    return '';
+  }
+  if (el.type === 'checkbox') return el.checked ? el.value : '';
+  // RadioNodeList
+  if (typeof el.value === 'string' && el.length !== undefined) return el.value; // RadioNodeList
+  if (el.type === 'radio') return el.checked ? el.value : '';
+  return el.value ? el.value.trim() : '';
+}
+
+function validate() {
+  var f = document.getElementById('gform');
+  for (var i = 0; i < REQUIRED.length; i++) {
+    if (!getFieldValue(f, REQUIRED[i])) return false;
+  }
+  return true;
+}
+
+// ── submit ──
+function doSubmit(e) {
+  var err = document.getElementById('errmsg');
+  if (!validate()) {
+    e.preventDefault();
+    err.style.display = 'block';
+    err.scrollIntoView({ behavior: 'smooth', block: 'center' });
+    return false;
+  }
+  err.style.display = 'none';
+  submitted = true;
+
+  var btn = document.getElementById('sbtn');
+  btn.classList.add('loading');
+  document.getElementById('bdot').className = 'spin';
+  document.getElementById('blbl').textContent = 'Submitting…';
+
+  // Fallback: show success after 3s regardless of iframe event
+  // (Google Forms iframe can be blocked by some browsers)
+  setTimeout(showSuccess, 3000);
+
+  return true; // allow form to POST to iframe
+}
+
+// ── iframe load (fires when Google Forms response page loads) ──
+document.getElementById('gf_target').addEventListener('load', function() {
+  if (submitted) showSuccess();
+});
+
+function showSuccess() {
+  if (!submitted) return;
+  submitted = false; // prevent double-fire
+  document.getElementById('prog-wrap').style.display = 'none';
+  document.getElementById('form-head').style.display = 'none';
+  document.getElementById('gform').style.display = 'none';
+  document.getElementById('success').style.display = 'block';
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── clear ──
+function clearForm() {
+  if (confirm('Clear all answers?')) {
+    document.getElementById('gform').reset();
+    document.getElementById('errmsg').style.display = 'none';
+    updateProgress();
+  }
+}
+</script>
+</body>
+</html>
