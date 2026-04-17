@@ -3,15 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>10M Giveaway Entry — r/MemeExchangeCommunism</title>
+<title>Moderator Candidate Application — r/MemeExchangeCommunism</title>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
 /* ── tokens ── */
 :root{
-  --o:       #ff4500;
-  --oh:      #e03d00;
-  --os:      rgba(255,69,0,.10);
-  --ol:      rgba(255,69,0,.20);
+  --o:       #e62b2b;
+  --oh:      #c21818;
+  --os:      rgba(230,43,43,.10);
+  --ol:      rgba(230,43,43,.20);
   --gold:    #f5c518;
   --green:   #22c997;
   --r:       12px;
@@ -34,7 +34,7 @@ html, html[data-theme="dark"]{
   --tx4:     rgba(240,240,244,.10);
   --nav-bg:  rgba(10,10,11,.88);
   --grid-ln: rgba(255,255,255,.045);
-  --glow:    rgba(255,69,0,.12);
+  --glow:    rgba(230,43,43,.15);
 }
 
 /* ── light ── */
@@ -52,7 +52,7 @@ html[data-theme="light"]{
   --tx4:     rgba(17,17,19,.10);
   --nav-bg:  rgba(250,250,250,.90);
   --grid-ln: rgba(0,0,0,.04);
-  --glow:    rgba(255,69,0,.07);
+  --glow:    rgba(230,43,43,.07);
 }
 
 /* ── reset ── */
@@ -142,7 +142,7 @@ body::after{
   transition:background .2s,transform .2s,box-shadow .2s;
   text-decoration:none;
 }
-.njoin:hover{background:var(--oh);transform:translateY(-1px);box-shadow:0 6px 20px rgba(255,69,0,.35);}
+.njoin:hover{background:var(--oh);transform:translateY(-1px);box-shadow:0 6px 20px rgba(230,43,43,.35);}
 
 /* theme toggle */
 .theme-btn{
@@ -192,7 +192,7 @@ body::after{
   animation:fadeUp .5s .12s var(--ease) both;
 }
 
-/* ── stats strip ── */
+/* ── stats strip (adjusted for context) ── */
 .stats{
   display:grid;grid-template-columns:repeat(4,1fr);
   border:1px solid var(--line);border-radius:var(--r);
@@ -287,11 +287,30 @@ body::after{
   overflow:hidden;
 }
 
+/* ── section divider ── */
+.form-divider {
+  background: var(--bg2);
+  padding: clamp(1.2rem,3vw,1.8rem) clamp(1.2rem,3vw,2rem);
+  border-bottom: 1px solid var(--line2);
+  border-top: 1px solid var(--line2);
+}
+.form-divider h3 {
+  font-family: 'Instrument Serif', serif;
+  font-size: 1.3rem;
+  color: var(--o);
+  margin-bottom: 0.2rem;
+  letter-spacing: -0.2px;
+}
+.form-divider p {
+  font-size: 0.8rem;
+  color: var(--tx3);
+  font-family: monospace;
+}
+
 /* ── question rows ── */
 .q{
   padding:clamp(1rem,2.5vw,1.5rem) clamp(1.2rem,3vw,2rem);
   border-bottom:1px solid var(--line2);
-  /* reveal animation handled by JS */
   opacity:0;
   transform:translateY(10px);
   transition:opacity .35s var(--ease),transform .35s var(--ease);
@@ -305,11 +324,12 @@ body::after{
   display:flex;align-items:flex-start;gap:6px;line-height:1.45;
 }
 .req{color:var(--o);}
-.q-num{
-  color:var(--tx3);font-weight:400;
-  font-family:'Instrument Serif',serif;
-  font-size:1rem;line-height:1;
-  margin-right:2px;flex-shrink:0;
+.q-sub{
+  display:block;
+  color:var(--tx3);
+  font-size:0.75rem;
+  font-weight:400;
+  margin-top:2px;
 }
 
 /* ── inputs ── */
@@ -327,7 +347,7 @@ body::after{
 .field:focus{
   border-color:var(--o);
   background:var(--bg2);
-  box-shadow:0 0 0 3px rgba(255,69,0,.12);
+  box-shadow:0 0 0 3px rgba(230,43,43,.12);
 }
 textarea.field{min-height:80px;resize:vertical;line-height:1.55;}
 
@@ -346,8 +366,8 @@ textarea.field{min-height:80px;resize:vertical;line-height:1.55;}
 .opt:hover{border-color:rgba(255,255,255,.14);background:var(--bg2);}
 .opt:has(input:checked){
   border-color:var(--ol);
-  background:rgba(255,69,0,.07);
-  box-shadow:0 0 0 3px rgba(255,69,0,.06);
+  background:rgba(230,43,43,.07);
+  box-shadow:0 0 0 3px rgba(230,43,43,.06);
 }
 .opt input{
   width:16px;height:16px;
@@ -355,25 +375,6 @@ textarea.field{min-height:80px;resize:vertical;line-height:1.55;}
 }
 .otxt{font-size:.86rem;font-weight:500;line-height:1.4;}
 .on{color:var(--o);font-weight:700;margin-right:3px;font-variant-numeric:tabular-nums;}
-
-/* ── EULA box ── */
-.eula-notice{
-  background:rgba(255,69,0,.06);
-  border:1px solid var(--ol);
-  border-radius:9px;
-  padding:.9rem 1.1rem;
-  margin-bottom:.75rem;
-}
-.eula-notice p{
-  font-size:.78rem;color:var(--tx2);
-  margin-bottom:.4rem;line-height:1.5;
-}
-.eula-notice a{
-  color:var(--o);font-weight:600;
-  display:inline-flex;align-items:center;gap:5px;
-  font-size:.8rem;
-}
-.eula-notice a:hover{text-decoration:underline;}
 
 /* ── submit bar ── */
 .sbar{
@@ -394,11 +395,11 @@ textarea.field{min-height:80px;resize:vertical;line-height:1.55;}
   padding:11px clamp(1.4rem,3.5vw,2rem);
   font-family:'Geist',sans-serif;font-size:.9rem;font-weight:700;
   cursor:pointer;
-  box-shadow:0 3px 18px rgba(255,69,0,.3);
+  box-shadow:0 3px 18px rgba(230,43,43,.3);
   transition:background .2s,transform .2s,box-shadow .2s;
   white-space:nowrap;
 }
-.bsub:hover{background:var(--oh);transform:translateY(-2px);box-shadow:0 7px 24px rgba(255,69,0,.42);}
+.bsub:hover{background:var(--oh);transform:translateY(-2px);box-shadow:0 7px 24px rgba(230,43,43,.42);}
 .bsub:active{transform:translateY(0);}
 .bsub.loading{opacity:.7;pointer-events:none;}
 .bdot{width:7px;height:7px;background:rgba(255,255,255,.7);border-radius:50%;}
@@ -430,7 +431,6 @@ textarea.field{min-height:80px;resize:vertical;line-height:1.55;}
   margin:0 clamp(1.2rem,3vw,2rem) .8rem;
   font-size:.82rem;color:#e05a4a;line-height:1.5;
 }
-.field-err{border-color:#c0392b !important;}
 
 /* ── success screen ── */
 #success{
@@ -449,7 +449,7 @@ textarea.field{min-height:80px;resize:vertical;line-height:1.55;}
   display:flex;align-items:center;justify-content:center;
   margin:0 auto 1.5rem;
   font-size:1.7rem;
-  box-shadow:0 0 0 12px rgba(255,69,0,.12),0 0 0 24px rgba(255,69,0,.05);
+  box-shadow:0 0 0 12px rgba(230,43,43,.12),0 0 0 24px rgba(230,43,43,.05);
   animation:ringPop .5s .1s var(--easeb) both;
 }
 @keyframes ringPop{from{transform:scale(.6);opacity:0;}to{transform:scale(1);opacity:1;}}
@@ -478,7 +478,7 @@ textarea.field{min-height:80px;resize:vertical;line-height:1.55;}
 
 <!-- NAV -->
 <nav class="nav">
-  <a class="nbrand" href="index.html">
+  <a class="nbrand" href="memeexchangecommunism.html">
     <div class="nlogo">
       <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
     </div>
@@ -495,9 +495,7 @@ textarea.field{min-height:80px;resize:vertical;line-height:1.55;}
   </nav>
   <div style="display:flex;align-items:center;gap:8px;">
     <button class="theme-btn" id="theme-btn" onclick="toggleTheme()" aria-label="Toggle theme">
-      <!-- sun icon (shown in dark mode) -->
       <svg id="ico-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-      <!-- moon icon (shown in light mode) -->
       <svg id="ico-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
     </button>
     <a class="njoin" href="https://www.reddit.com/r/memeexchangecommunism/" target="_blank">
@@ -510,17 +508,11 @@ textarea.field{min-height:80px;resize:vertical;line-height:1.55;}
 <div class="page">
 
   <!-- HERO -->
-  <div class="eyebrow"><span class="eyebrow-dot"></span> 10M MILESTONE GIVEAWAY</div>
-  <h1 class="hero-h">Win <em>Meme Currency.</em><br>Enter below.</h1>
-  <p class="hero-p">We just hit 10 million total views. To celebrate, we're giving away MC to community members. Fill out the form — winners picked randomly from valid entries.</p>
+  <div class="eyebrow"><span class="eyebrow-dot"></span> OFFICIAL RECRUITMENT</div>
+  <h1 class="hero-h">Join the <em>Vanguard.</em><br>Become a Mod.</h1>
+  <p class="hero-p">Comrades, the Exchange needs your leadership. We are seeking dedicated members to help guide and protect the subreddit. Approved candidates will be placed on the ballot for the upcoming community election.</p>
 
   <!-- STATS -->
-  <div class="stats">
-    <div class="stat"><div class="si">👁</div><div class="sv">10.0m</div><div class="sl">Views</div></div>
-    <div class="stat"><div class="si">👥</div><div class="sv">36.9k</div><div class="sl">Members</div></div>
-    <div class="stat"><div class="si">📋</div><div class="sv">11.2k</div><div class="sl">Posts</div></div>
-    <div class="stat"><div class="si">💬</div><div class="sv">745k</div><div class="sl">Comments</div></div>
-  </div>
 
   <!-- FORM WRAPPER -->
   <div class="form-wrapper">
@@ -528,143 +520,119 @@ textarea.field{min-height:80px;resize:vertical;line-height:1.55;}
     <!-- PROGRESS -->
     <div class="prog-wrap" id="prog-wrap">
       <div class="prog-track"><div class="prog-fill" id="pf"></div></div>
-      <span class="prog-txt" id="pt">0 / 12</span>
+      <span class="prog-txt" id="pt">0 / 15</span>
     </div>
 
     <!-- HEAD -->
     <div class="form-head" id="form-head">
-      <h2>Meme Currency 10M Giveaway Entry</h2>
-      <p>All fields marked * are required. Winners selected randomly.</p>
+      <h2>Official Mod Application</h2>
+      <p>Section 1 of 2. All fields marked * are required for consideration.</p>
     </div>
 
-    <!-- Hidden iframe — form posts here to avoid page reload -->
+    <!-- Hidden iframe -->
     <iframe name="gf_target" id="gf_target" style="display:none" aria-hidden="true"></iframe>
 
     <!-- FORM -->
     <form
       class="form-body"
       id="gform"
-      action="https://docs.google.com/forms/d/e/1FAIpQLSdw9OaGjAJCHBoBtSOVh-u9Kv5cHtlWsW2525P4Eft_-sHvxg/formResponse"
+      action="https://docs.google.com/forms/d/e/1FAIpQLSfV42N18azU4zcZV2o5kam8iO8xQAtkEI57a39LJ0A2dnHZTQ/formResponse"
       method="POST"
       target="gf_target"
       onsubmit="return doSubmit(event)"
       novalidate>
 
-      <!-- Q1 -->
+      <!-- SECTION 1 -->
       <div class="q">
-        <div class="ql"><span class="q-num">1.</span> Reddit Username <span class="req">*</span></div>
-        <input class="field" type="text" name="entry.110369550" id="f-reddit" placeholder="u/yourname" autocomplete="off">
+        <div class="ql">Username: <span class="req">*</span></div>
+        <input class="field" type="text" name="entry.1892986163" placeholder="Short-answer text" autocomplete="off">
       </div>
 
-      <!-- Q2 -->
       <div class="q">
-        <div class="ql"><span class="q-num">2.</span> Discord Username <span style="color:var(--tx3);font-weight:300;font-size:.78rem;"> — optional</span></div>
-        <input class="field" type="text" name="entry.639932412" placeholder="yourname or yourname#0000" autocomplete="off">
+        <div class="ql">Age: <span class="req">*</span></div>
+        <input class="field" type="text" name="entry.2074326588" placeholder="Short-answer text" autocomplete="off">
       </div>
 
-      <!-- Q3 -->
       <div class="q">
-        <div class="ql"><span class="q-num">3.</span> Are you in our Discord server? <span class="req">*</span></div>
-        <div class="opts">
-          <label class="opt"><input type="radio" name="entry.1322817154" value="Yes"><span class="otxt">Yes</span></label>
-          <label class="opt"><input type="radio" name="entry.1322817154" value="No"><span class="otxt">No</span></label>
+        <div class="ql">Time zone: <span class="req">*</span></div>
+        <input class="field" type="text" name="entry.1638222758" placeholder="Short-answer text" autocomplete="off">
+      </div>
+
+      <div class="q">
+        <div class="ql">How long have you been active in the subreddit? <span class="req">*</span></div>
+        <input class="field" type="text" name="entry.1577262156" placeholder="Short-answer text" autocomplete="off">
+      </div>
+
+      <div class="q">
+        <div class="ql">Why do you want to be a mod? <span class="req">*</span></div>
+        <textarea class="field" name="entry.1282705801" placeholder="Long-answer text"></textarea>
+      </div>
+
+      <div class="q">
+        <div class="ql">What skills or experience do you bring? <span class="req">*</span></div>
+        <textarea class="field" name="entry.1983164372" placeholder="Long-answer text"></textarea>
+      </div>
+
+      <div class="q">
+        <div class="ql">How many hours per week can you moderate? <span class="req">*</span></div>
+        <input class="field" type="text" name="entry.1053546129" placeholder="Short-answer text" autocomplete="off">
+      </div>
+
+      <div class="q">
+        <div class="ql">Any previous mod experience? (Yes/No + details) <span class="req">*</span></div>
+        <input class="field" type="text" name="entry.450725260" placeholder="Short-answer text" autocomplete="off">
+      </div>
+
+      <div class="q">
+        <div class="ql">Anything else the mod team should know?</div>
+        <textarea class="field" name="entry.1971510193" placeholder="Long-answer text"></textarea>
+      </div>
+
+      <!-- SECTION 2 DIVIDER -->
+      <div class="form-divider q">
+        <h3>Moderator Candidate "Election Statement" Form</h3>
+        <p>(For posting publicly so users can vote on candidates)</p>
+      </div>
+
+      <!-- SECTION 2 -->
+      <div class="q">
+        <div class="ql">
+          <div>
+            Candidate Name: <span class="req">*</span>
+            <span class="q-sub">Real name not required</span>
+          </div>
         </div>
+        <input class="field" type="text" name="entry.628603080" placeholder="Short-answer text" autocomplete="off">
       </div>
 
-      <!-- Q4 -->
       <div class="q">
-        <div class="ql"><span class="q-num">4.</span> How long have you been a member? <span class="req">*</span></div>
-        <div class="opts">
-          <label class="opt"><input type="radio" name="entry.1499019517" value="Less than 1 week"><span class="otxt"><span class="on">A.</span> Less than 1 week</span></label>
-          <label class="opt"><input type="radio" name="entry.1499019517" value="1-4 weeks"><span class="otxt"><span class="on">B.</span> 1–4 weeks</span></label>
-          <label class="opt"><input type="radio" name="entry.1499019517" value="1-3 months"><span class="otxt"><span class="on">C.</span> 1–3 months</span></label>
-          <label class="opt"><input type="radio" name="entry.1499019517" value="3+ months"><span class="otxt"><span class="on">D.</span> 3+ months</span></label>
+        <div class="ql">Profile Link: <span class="req">*</span></div>
+        <input class="field" type="text" name="entry.118957611" placeholder="Short-answer text" autocomplete="off">
+      </div>
+
+      <div class="q">
+        <div class="ql">1. Summary of Who You Are <span class="req">*</span></div>
+        <textarea class="field" name="entry.683781066" placeholder="Long-answer text"></textarea>
+      </div>
+
+      <div class="q">
+        <div class="ql">2. What You Will Do as a Mod <span class="req">*</span></div>
+        <textarea class="field" name="entry.693488084" placeholder="Long-answer text"></textarea>
+      </div>
+
+      <div class="q">
+        <div class="ql">
+          <div>
+            3. Your Approach to Community Rules & Culture <span class="req">*</span>
+            <span class="q-sub">(Short explanation)</span>
+          </div>
         </div>
+        <input class="field" type="text" name="entry.774805128" placeholder="Short-answer text" autocomplete="off">
       </div>
 
-      <!-- Q5 -->
       <div class="q">
-        <div class="ql"><span class="q-num">5.</span> How often do you use MemeCoin? <span class="req">*</span></div>
-        <div class="opts">
-          <label class="opt"><input type="radio" name="entry.645877340" value="Daily"><span class="otxt">Daily</span></label>
-          <label class="opt"><input type="radio" name="entry.645877340" value="Few times a week"><span class="otxt">Few times a week</span></label>
-          <label class="opt"><input type="radio" name="entry.645877340" value="Occasionally"><span class="otxt">Occasionally</span></label>
-        </div>
-      </div>
-
-      <!-- Q6 -->
-      <div class="q">
-        <div class="ql"><span class="q-num">6.</span> What do you usually do on the subreddit? <span class="req">*</span></div>
-        <div class="opts">
-          <label class="opt"><input type="radio" name="entry.1696451627" value="Post memes"><span class="otxt">Post memes</span></label>
-          <label class="opt"><input type="radio" name="entry.1696451627" value="Comment"><span class="otxt">Comment</span></label>
-          <label class="opt"><input type="radio" name="entry.1696451627" value="Use MemeCoin features"><span class="otxt">Use MemeCoin features</span></label>
-          <label class="opt"><input type="radio" name="entry.1696451627" value="Mostly browse"><span class="otxt">Mostly browse</span></label>
-        </div>
-      </div>
-
-      <!-- Q7 -->
-      <div class="q">
-        <div class="ql"><span class="q-num">7.</span> Which MemeCoin feature do you use most? <span class="req">*</span></div>
-        <div class="opts">
-          <label class="opt"><input type="radio" name="entry.980991148" value="Rewards"><span class="otxt">Rewards</span></label>
-          <label class="opt"><input type="radio" name="entry.980991148" value="Shops"><span class="otxt">Shops</span></label>
-          <label class="opt"><input type="radio" name="entry.980991148" value="Events"><span class="otxt">Events</span></label>
-          <label class="opt"><input type="radio" name="entry.980991148" value="Transfers"><span class="otxt">Transfers</span></label>
-          <label class="opt"><input type="radio" name="entry.980991148" value="Other"><span class="otxt">Other</span></label>
-        </div>
-      </div>
-
-      <!-- Q8 -->
-      <div class="q">
-        <div class="ql"><span class="q-num">8.</span> What is your current MC balance? <span class="req">*</span></div>
-        <input class="field" type="text" name="entry.1686519" placeholder="e.g. 500 MC" autocomplete="off">
-      </div>
-
-      <!-- Q9 -->
-      <div class="q">
-        <div class="ql"><span class="q-num">9.</span> Describe a recent MemeCoin interaction <span class="req">*</span></div>
-        <textarea class="field" name="entry.687701087" placeholder="Tell us about a recent experience…"></textarea>
-      </div>
-
-      <!-- Q10 -->
-      <div class="q">
-        <div class="ql"><span class="q-num">10.</span> What do you like most about MemeCoin? <span class="req">*</span></div>
-        <textarea class="field" name="entry.1300445489" placeholder="Share your favourite thing…"></textarea>
-      </div>
-
-      <!-- Q11 -->
-      <div class="q">
-        <div class="ql"><span class="q-num">11.</span> What would you improve? <span class="req">*</span></div>
-        <textarea class="field" name="entry.715319499" placeholder="Any suggestions or feedback…"></textarea>
-      </div>
-
-      <!-- Q12 — alt account confirm -->
-      <div class="q">
-        <div class="ql"><span class="q-num">12.</span> Confirm you are not using alternate accounts <span class="req">*</span></div>
-        <div class="opts">
-          <label class="opt">
-            <input type="checkbox" name="entry.950331737" value="I Confirm I'm not using any alt accounts">
-            <span class="otxt">I confirm I'm not using any alt accounts</span>
-          </label>
-        </div>
-      </div>
-
-      <!-- Q13 — EULA -->
-      <div class="q">
-        <div class="eula-notice">
-          <p>Please read the giveaway terms before accepting. <em>(We promise we're not actually asking for your kidneys.)</em></p>
-          <a href="10meula.html" target="_blank">
-            Read the 10M Milestone Giveaway Terms
-            <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
-          </a>
-        </div>
-        <div class="opts">
-          <label class="opt">
-            <input type="checkbox" name="entry.1967557164" value="I Accept the EULA">
-            <span class="otxt">I accept the EULA</span>
-          </label>
-        </div>
+        <div class="ql">4. Why People Should Support You <span class="req">*</span></div>
+        <textarea class="field" name="entry.453353257" placeholder="Long-answer text"></textarea>
       </div>
 
       <!-- Error -->
@@ -677,7 +645,7 @@ textarea.field{min-height:80px;resize:vertical;line-height:1.55;}
         <button type="button" class="bclr" onclick="clearForm()">Clear all answers</button>
         <button type="submit" class="bsub" id="sbtn">
           <span id="bdot" class="bdot"></span>
-          <span id="blbl">Submit Entry</span>
+          <span id="blbl">Submit Application</span>
         </button>
       </div>
 
@@ -685,9 +653,9 @@ textarea.field{min-height:80px;resize:vertical;line-height:1.55;}
 
     <!-- SUCCESS -->
     <div id="success">
-      <div class="sring">🎉</div>
-      <h3>Entry submitted!</h3>
-      <p>Your response has been recorded.<br>Winners will be announced on the subreddit. Good luck!</p>
+      <div class="sring">🛡</div>
+      <h3>Application submitted!</h3>
+      <p>Your response has been recorded.<br>We will review your answers and be in touch soon. Good luck!</p>
       <a class="sub-link" href="https://www.reddit.com/r/memeexchangecommunism/" target="_blank">
         <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M17.5 13c0-1.1-.9-2-2-2-.5 0-.9.2-1.3.5C13.1 11 12 10.4 12 10.4l.3-1.4 1.9.4c.1.6.6 1 1.2 1 .7 0 1.2-.5 1.2-1.2S16.1 8 15.4 8c-.5 0-.9.2-1.1.6L12.2 8l-.5 2.2c-1 0-1.9.6-2.9 1.1-.4-.3-.8-.5-1.3-.5-1.1 0-2 .9-2 2 0 .8.5 1.5 1.2 1.8v.4c0 1.8 2 3.2 4.4 3.2s4.4-1.4 4.4-3.2v-.4c.6-.3 1.1-1 1-1.6zm-9 0c0-.4.3-.8.8-.8s.8.3.8.8-.3.8-.8.8-.8-.3-.8-.8zm5.1 2.8c-.6.4-1.3.5-1.9.5s-1.3-.2-1.9-.5c-.1-.1-.1-.3 0-.3.1-.1.2-.1.3 0 .5.3 1 .4 1.6.4s1.1-.1 1.6-.4c.1-.1.2 0 .3 0 .1.1.1.2 0 .3zm-.3-2c-.4 0-.8-.3-.8-.8s.3-.8.8-.8.8.3.8.8-.3.8-.8.8z" fill="currentColor"/></svg>
         Back to the subreddit
@@ -706,27 +674,29 @@ function toggleTheme() {
   document.getElementById('ico-sun').style.display  = isDark ? 'none'  : 'block';
   document.getElementById('ico-moon').style.display = isDark ? 'block' : 'none';
 }
-// set initial data-theme so CSS vars resolve correctly
 document.documentElement.setAttribute('data-theme', 'dark');
 
 // ── tracked fields for progress ──
 var FIELDS = [
-  'entry.110369550',   // reddit username
-  'entry.1322817154',  // discord member
-  'entry.1499019517',  // how long
-  'entry.645877340',   // how often
-  'entry.1696451627',  // what do you do
-  'entry.980991148',   // feature
-  'entry.1686519',     // balance
-  'entry.687701087',   // recent interaction
-  'entry.1300445489',  // like most
-  'entry.715319499',   // improve
-  'entry.950331737',   // no alts
-  'entry.1967557164'   // eula
+  'entry.1892986163', // Username
+  'entry.2074326588', // Age
+  'entry.1638222758', // Time zone
+  'entry.1577262156', // How long active
+  'entry.1282705801', // Why mod
+  'entry.1983164372', // Skills/experience
+  'entry.1053546129', // Hours per week
+  'entry.450725260',  // Prev mod exp
+  'entry.1971510193', // Anything else (Not required, but tracked for progress bar)
+  'entry.628603080',  // Candidate Name
+  'entry.118957611',  // Profile Link
+  'entry.683781066',  // 1. Summary
+  'entry.693488084',  // 2. What You Will Do
+  'entry.774805128',  // 3. Approach
+  'entry.453353257'   // 4. Why Support You
 ];
 
-// required fields (subset used for validation)
-var REQUIRED = FIELDS; // all are required
+// required fields (omitting "Anything else...")
+var REQUIRED = FIELDS.filter(function(f) { return f !== 'entry.1971510193'; });
 
 // ── state ──
 var submitted = false;
@@ -737,18 +707,7 @@ function updateProgress() {
   FIELDS.forEach(function(n) {
     var el = f.elements[n];
     if (!el) return;
-    if (el.type === 'checkbox') { if (el.checked) done++; }
-    else if (el.length !== undefined && el.value !== undefined && el.constructor.name === 'RadioNodeList') {
-      if (el.value) done++;
-    }
-    else if (el instanceof NodeList || (el.length && el[0] && el[0].type === 'radio')) {
-      // radio group via name — check if any selected
-      var radios = f.querySelectorAll('input[name="' + n + '"]');
-      if (radios.length) {
-        for (var i = 0; i < radios.length; i++) { if (radios[i].checked) { done++; break; } }
-      }
-    }
-    else { if (el.value && el.value.trim()) done++; }
+    if (el.value && el.value.trim()) done++;
   });
   document.getElementById('pf').style.width = Math.round(done / FIELDS.length * 100) + '%';
   document.getElementById('pt').textContent = done + ' / ' + FIELDS.length;
@@ -768,19 +727,7 @@ document.querySelectorAll('.q').forEach(function(q) { qObs.observe(q); });
 // ── validation ──
 function getFieldValue(f, name) {
   var el = f.elements[name];
-  if (!el) {
-    // try as radio group
-    var radios = f.querySelectorAll('input[name="' + name + '"]');
-    if (radios.length) {
-      for (var i = 0; i < radios.length; i++) { if (radios[i].checked) return radios[i].value; }
-      return '';
-    }
-    return '';
-  }
-  if (el.type === 'checkbox') return el.checked ? el.value : '';
-  // RadioNodeList
-  if (typeof el.value === 'string' && el.length !== undefined) return el.value; // RadioNodeList
-  if (el.type === 'radio') return el.checked ? el.value : '';
+  if (!el) return '';
   return el.value ? el.value.trim() : '';
 }
 
@@ -809,21 +756,18 @@ function doSubmit(e) {
   document.getElementById('bdot').className = 'spin';
   document.getElementById('blbl').textContent = 'Submitting…';
 
-  // Fallback: show success after 3s regardless of iframe event
-  // (Google Forms iframe can be blocked by some browsers)
   setTimeout(showSuccess, 3000);
-
-  return true; // allow form to POST to iframe
+  return true;
 }
 
-// ── iframe load (fires when Google Forms response page loads) ──
+// ── iframe load ──
 document.getElementById('gf_target').addEventListener('load', function() {
   if (submitted) showSuccess();
 });
 
 function showSuccess() {
   if (!submitted) return;
-  submitted = false; // prevent double-fire
+  submitted = false; 
   document.getElementById('prog-wrap').style.display = 'none';
   document.getElementById('form-head').style.display = 'none';
   document.getElementById('gform').style.display = 'none';
