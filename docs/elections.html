@@ -1,0 +1,834 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Early 2026 Elections — r/MemeExchangeCommunism</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+
+/* ─── TOKENS ───────────────────────────────────── */
+:root{
+  --red:#e8001a;
+  --red-soft:rgba(232,0,26,.08);
+  --red-line:rgba(232,0,26,.22);
+  --black:#0d0d0d;
+  --white:#f5f4f2;
+  --paper:#eeece9;
+  --paper2:#e5e3df;
+  --ink:#1a1916;
+  --ink2:rgba(26,25,22,.55);
+  --ink3:rgba(26,25,22,.30);
+  --ink4:rgba(26,25,22,.12);
+  --line:rgba(26,25,22,.10);
+  --line2:rgba(26,25,22,.05);
+  --ease:cubic-bezier(.22,1,.36,1);
+  --easeb:cubic-bezier(.34,1.56,.64,1);
+}
+
+/* ─── RESET ────────────────────────────────────── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{
+  background:var(--white);
+  color:var(--ink);
+  font-family:'Geist',system-ui,sans-serif;
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--red);color:#fff;}
+::-webkit-scrollbar{width:4px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--red);border-radius:2px;}
+a{color:inherit;text-decoration:none;}
+img{max-width:100%;display:block;}
+
+/* ─── NOISE TEXTURE ────────────────────────────── */
+body::before{
+  content:'';
+  position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.028'/%3E%3C/svg%3E");
+  opacity:.6;
+}
+
+/* ─── NAV ───────────────────────────────────────── */
+.nav{
+  position:sticky;top:0;z-index:200;height:56px;
+  background:rgba(245,244,242,.92);
+  border-bottom:1px solid var(--line);
+  backdrop-filter:blur(20px) saturate(160%);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(1rem,5vw,3rem);
+}
+.nbrand{
+  display:flex;align-items:center;gap:10px;
+  font-weight:700;font-size:.88rem;color:var(--ink);
+  letter-spacing:-.2px;
+}
+.nlogo{
+  width:28px;height:28px;border-radius:7px;
+  background:var(--red);
+  display:flex;align-items:center;justify-content:center;
+  flex-shrink:0;
+  transition:transform .3s var(--easeb);
+}
+.nbrand:hover .nlogo{transform:rotate(-10deg) scale(1.1);}
+.nright{display:flex;align-items:center;gap:8px;}
+.nbtn{
+  display:inline-flex;align-items:center;gap:7px;
+  background:var(--red);color:#fff;border:none;
+  border-radius:8px;padding:7px 16px;
+  font-family:'Geist',sans-serif;font-size:.8rem;font-weight:700;
+  cursor:pointer;transition:all .2s;text-decoration:none;white-space:nowrap;
+}
+.nbtn:hover{background:#c0001a;transform:translateY(-1px);box-shadow:0 6px 20px rgba(232,0,26,.3);}
+.nbtn-ghost{
+  display:inline-flex;align-items:center;gap:6px;
+  background:transparent;color:var(--ink3);
+  border:1px solid var(--line);border-radius:8px;
+  padding:6px 14px;font-size:.78rem;font-weight:500;cursor:pointer;
+  transition:all .15s;
+}
+.nbtn-ghost:hover{color:var(--ink);border-color:var(--ink4);}
+
+/* ─── HERO ───────────────────────────────────────── */
+.hero{
+  position:relative;z-index:1;
+  padding:clamp(4rem,10vw,8rem) clamp(1rem,5vw,3rem) clamp(3rem,7vw,6rem);
+  border-bottom:1px solid var(--line);
+  overflow:hidden;
+}
+
+/* Diagonal grid background */
+.hero::after{
+  content:'';position:absolute;inset:0;z-index:0;pointer-events:none;
+  background-image:
+    linear-gradient(var(--line) 1px,transparent 1px),
+    linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:60px 60px;
+  mask-image:radial-gradient(ellipse 70% 80% at 20% 50%,rgba(0,0,0,.35),transparent 70%);
+  opacity:.5;
+}
+
+.hero-inner{
+  position:relative;z-index:1;
+  max-width:1120px;margin:0 auto;
+  display:grid;grid-template-columns:1fr auto;
+  gap:clamp(2rem,5vw,5rem);
+  align-items:center;
+}
+@media(max-width:820px){ .hero-inner{grid-template-columns:1fr;} }
+
+/* .hero-left{}
+
+/* Poster-style eyebrow */
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:.68rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--red);margin-bottom:1.6rem;
+  padding:4px 12px;border-radius:100px;
+  background:var(--red-soft);border:1px solid var(--red-line);
+  animation:fadeUp .5s var(--ease) both;
+}
+
+/* Big headline matching poster */
+.hero-h{
+  font-family:'Geist',sans-serif;
+  font-weight:900;
+  font-size:clamp(3rem,9vw,7.5rem);
+  line-height:.92;
+  letter-spacing:-3px;
+  color:var(--black);
+  margin-bottom:0;
+  animation:fadeUp .5s .06s var(--ease) both;
+}
+.hero-h .slash{color:var(--red);}
+.hero-h .sub-word{
+  font-family:'Instrument Serif',serif;
+  font-weight:400;
+  font-style:italic;
+  font-size:clamp(2rem,6vw,5rem);
+  letter-spacing:-1px;
+  color:var(--ink2);
+  display:block;
+  margin-top:.15em;
+}
+
+/* Red rule divider */
+.hero-rule{
+  width:clamp(120px,30vw,260px);height:3px;
+  background:var(--red);
+  margin:2rem 0;
+  animation:fadeUp .5s .12s var(--ease) both;
+}
+
+.hero-tagline{
+  font-family:'Instrument Serif',serif;
+  font-size:clamp(1.4rem,3.5vw,2.4rem);
+  font-weight:400;
+  line-height:1.15;
+  letter-spacing:-.3px;
+  color:var(--black);
+  animation:fadeUp .5s .18s var(--ease) both;
+}
+.hero-tagline em{font-style:italic;color:var(--red);}
+
+.hero-sub{
+  font-size:.88rem;color:var(--ink2);font-weight:300;
+  max-width:440px;line-height:1.75;
+  margin-top:1rem;
+  animation:fadeUp .5s .22s var(--ease) both;
+}
+
+.hero-ctas{
+  display:flex;align-items:center;gap:12px;flex-wrap:wrap;
+  margin-top:2.5rem;
+  animation:fadeUp .5s .28s var(--ease) both;
+}
+
+.cta-primary{
+  display:inline-flex;align-items:center;gap:9px;
+  background:var(--red);color:#fff;
+  border-radius:10px;padding:14px 28px;
+  font-size:.92rem;font-weight:700;
+  transition:all .22s var(--ease);
+  border:none;cursor:pointer;text-decoration:none;
+}
+.cta-primary:hover{background:#c0001a;transform:translateY(-2px);box-shadow:0 12px 36px rgba(232,0,26,.3);}
+.cta-primary:active{transform:translateY(0);}
+
+.cta-secondary{
+  display:inline-flex;align-items:center;gap:7px;
+  background:transparent;color:var(--ink);
+  border:1.5px solid var(--line);
+  border-radius:10px;padding:13px 22px;
+  font-size:.88rem;font-weight:600;
+  transition:all .22s var(--ease);cursor:pointer;text-decoration:none;
+}
+.cta-secondary:hover{border-color:var(--red-line);color:var(--red);background:var(--red-soft);}
+
+/* Ballot box illustration */
+.hero-ballot{
+  width:clamp(180px,25vw,280px);
+  animation:fadeUp .5s .32s var(--ease) both;
+  flex-shrink:0;
+}
+@media(max-width:820px){ .hero-ballot{display:none;} }
+
+.ballot-box-wrap{
+  position:relative;
+  display:flex;flex-direction:column;align-items:center;gap:24px;
+}
+.official-stamp{
+  font-size:.65rem;font-weight:600;letter-spacing:2px;
+  text-transform:uppercase;color:var(--ink3);
+  text-align:center;
+  padding:6px 16px;border:1px solid var(--line);
+  border-radius:100px;
+}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+
+/* ─── SECTION SHELL ──────────────────────────────── */
+.section{
+  position:relative;z-index:1;
+  padding:clamp(4rem,8vw,7rem) clamp(1rem,5vw,3rem);
+  border-bottom:1px solid var(--line);
+}
+.section-inner{max-width:1120px;margin:0 auto;}
+
+.section-eyebrow{
+  display:block;
+  font-size:.68rem;font-weight:700;letter-spacing:2.5px;
+  text-transform:uppercase;color:var(--red);
+  margin-bottom:1.2rem;
+}
+.section-h{
+  font-family:'Geist',sans-serif;
+  font-weight:900;
+  font-size:clamp(1.8rem,4vw,3.2rem);
+  line-height:.97;letter-spacing:-1.5px;
+  color:var(--black);margin-bottom:1rem;
+}
+.section-h em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;}
+.section-lead{
+  font-size:clamp(.9rem,1.8vw,1.05rem);
+  font-weight:300;color:var(--ink2);
+  max-width:540px;line-height:1.75;
+  margin-bottom:clamp(2.5rem,5vw,4rem);
+}
+
+/* ─── WHAT IS THIS — 2-col ───────────────────────── */
+.what-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(2rem,5vw,5rem);align-items:center;
+}
+@media(max-width:780px){ .what-grid{grid-template-columns:1fr;} }
+
+.what-text p{
+  font-size:.95rem;color:var(--ink2);
+  line-height:1.8;font-weight:300;
+  margin-bottom:1.1rem;
+}
+.what-text p:last-child{margin-bottom:0;}
+.what-text strong{color:var(--black);font-weight:700;}
+
+.what-card{
+  background:var(--paper);
+  border:1px solid var(--line);border-radius:16px;
+  padding:clamp(1.5rem,3vw,2.5rem);
+}
+.what-card-title{
+  font-family:'Geist',sans-serif;font-weight:900;
+  font-size:1rem;letter-spacing:-.3px;
+  color:var(--black);margin-bottom:1.4rem;
+  display:flex;align-items:center;gap:8px;
+}
+.what-card-title svg{color:var(--red);}
+
+.role-item{
+  display:flex;gap:14px;align-items:flex-start;
+  padding:12px 0;border-bottom:1px solid var(--line2);
+}
+.role-item:last-child{border-bottom:none;}
+.role-n{
+  width:28px;height:28px;border-radius:7px;flex-shrink:0;
+  background:var(--red);color:#fff;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.72rem;font-weight:800;
+  transition:transform .25s var(--easeb);
+}
+.role-item:hover .role-n{transform:scale(1.12) rotate(-4deg);}
+.role-item h4{font-size:.88rem;font-weight:700;color:var(--black);margin-bottom:3px;}
+.role-item p{font-size:.78rem;color:var(--ink2);line-height:1.55;font-weight:300;}
+
+/* ─── REQUIREMENTS ───────────────────────────────── */
+.req-section{background:var(--paper);}
+
+.req-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:12px;
+}
+@media(max-width:900px){ .req-grid{grid-template-columns:1fr 1fr;} }
+@media(max-width:560px){ .req-grid{grid-template-columns:1fr;} }
+
+.req-card{
+  background:var(--white);
+  border:1px solid var(--line);border-radius:12px;
+  padding:22px 22px 24px;
+  position:relative;overflow:hidden;
+  transition:border-color .2s,transform .2s var(--ease),box-shadow .2s;
+  cursor:default;
+}
+.req-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
+  background:var(--red);transform:scaleX(0);transform-origin:left;
+  transition:transform .3s var(--ease);
+}
+.req-card:hover{border-color:var(--red-line);transform:translateY(-3px);box-shadow:0 12px 40px rgba(0,0,0,.06);}
+.req-card:hover::before{transform:scaleX(1);}
+.req-card-icon{
+  width:38px;height:38px;border-radius:9px;
+  background:var(--red-soft);border:1px solid var(--red-line);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--red);margin-bottom:14px;
+  transition:background .2s,transform .25s var(--easeb);
+}
+.req-card:hover .req-card-icon{background:var(--red);color:#fff;transform:scale(1.08) rotate(-4deg);}
+.req-card h3{font-size:.9rem;font-weight:700;color:var(--black);margin-bottom:6px;}
+.req-card p{font-size:.8rem;color:var(--ink2);line-height:1.65;font-weight:300;}
+
+/* MUST / NICE TO HAVE */
+.tag-must{
+  display:inline-flex;align-items:center;
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  padding:2px 8px;border-radius:100px;
+  background:var(--red-soft);border:1px solid var(--red-line);color:var(--red);
+  margin-top:10px;
+}
+.tag-nice{
+  display:inline-flex;align-items:center;
+  font-size:.6rem;font-weight:700;letter-spacing:1px;text-transform:uppercase;
+  padding:2px 8px;border-radius:100px;
+  background:rgba(26,25,22,.06);border:1px solid var(--line);color:var(--ink3);
+  margin-top:10px;
+}
+
+/* ─── TIMELINE ───────────────────────────────────── */
+.timeline{
+  display:flex;flex-direction:column;gap:0;
+  max-width:720px;
+}
+.tl-item{
+  display:flex;gap:24px;align-items:flex-start;
+  position:relative;
+}
+.tl-item:not(:last-child)::before{
+  content:'';position:absolute;left:18px;top:44px;bottom:-24px;
+  width:1px;background:var(--line);
+}
+.tl-dot-wrap{flex-shrink:0;padding-top:14px;}
+.tl-dot{
+  width:36px;height:36px;border-radius:10px;
+  background:var(--white);border:1.5px solid var(--line);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Geist',sans-serif;font-weight:900;font-size:.8rem;
+  color:var(--red);position:relative;z-index:1;
+  transition:background .2s,border-color .2s,transform .25s var(--easeb);
+}
+.tl-item:hover .tl-dot{background:var(--red);border-color:var(--red);color:#fff;transform:scale(1.1);}
+.tl-body{
+  padding:14px 0 clamp(1.5rem,3vw,2.5rem);
+  flex:1;
+}
+.tl-phase{
+  font-size:.65rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--red);margin-bottom:4px;
+}
+.tl-title{font-size:.97rem;font-weight:700;color:var(--black);margin-bottom:5px;}
+.tl-desc{font-size:.83rem;color:var(--ink2);line-height:1.65;font-weight:300;}
+
+/* ─── APPLY CTA ──────────────────────────────────── */
+.apply-section{
+  background:var(--black);
+  color:#fff;
+}
+.apply-inner{
+  max-width:1120px;margin:0 auto;
+  padding:clamp(4rem,8vw,7rem) clamp(1rem,5vw,3rem);
+  display:grid;grid-template-columns:1fr auto;
+  gap:clamp(2rem,4vw,4rem);align-items:center;
+}
+@media(max-width:720px){ .apply-inner{grid-template-columns:1fr;} }
+
+.apply-label{
+  font-size:.68rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;
+  color:var(--red);margin-bottom:1.2rem;display:block;
+}
+.apply-h{
+  font-family:'Geist',sans-serif;font-weight:900;
+  font-size:clamp(2rem,5vw,4rem);
+  line-height:.97;letter-spacing:-2px;
+  color:#fff;margin-bottom:1rem;
+}
+.apply-h em{font-family:'Instrument Serif',serif;font-style:italic;font-weight:400;color:rgba(255,255,255,.55);}
+.apply-sub{font-size:.88rem;font-weight:300;color:rgba(255,255,255,.5);line-height:1.7;max-width:440px;}
+
+.apply-btn{
+  display:inline-flex;align-items:center;gap:10px;
+  background:var(--red);color:#fff;
+  border-radius:12px;padding:18px 34px;
+  font-size:1rem;font-weight:700;
+  white-space:nowrap;
+  transition:all .22s var(--ease);
+  text-decoration:none;border:none;cursor:pointer;
+  box-shadow:0 0 0 0 rgba(232,0,26,0);
+}
+.apply-btn:hover{background:#c0001a;transform:translateY(-2px);box-shadow:0 16px 48px rgba(232,0,26,.45);}
+.apply-btn .arrow{transition:transform .2s;}
+.apply-btn:hover .arrow{transform:translateX(4px);}
+
+/* ─── HISTORY CALLOUT ────────────────────────────── */
+.history-grid{
+  display:grid;grid-template-columns:repeat(2,1fr);
+  gap:12px;margin-top:3rem;
+}
+@media(max-width:640px){ .history-grid{grid-template-columns:1fr;} }
+
+.history-card{
+  background:var(--paper);border:1px solid var(--line);
+  border-radius:12px;padding:22px 24px;
+  transition:border-color .2s,transform .2s var(--ease);
+}
+.history-card:hover{border-color:var(--red-line);transform:translateY(-2px);}
+.hc-date{font-size:.68rem;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--ink3);margin-bottom:6px;}
+.hc-title{font-size:.95rem;font-weight:700;color:var(--black);margin-bottom:5px;}
+.hc-badge{
+  display:inline-flex;align-items:center;gap:4px;
+  font-size:.6rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;
+  padding:2px 8px;border-radius:100px;
+  margin-top:8px;border:1px solid;
+}
+.badge-won{color:#16a34a;border-color:rgba(22,163,74,.25);background:rgba(22,163,74,.07);}
+.badge-red{color:var(--red);border-color:var(--red-line);background:var(--red-soft);}
+.hc-desc{font-size:.78rem;color:var(--ink2);line-height:1.6;font-weight:300;margin-top:6px;}
+
+/* ─── FOOTER ─────────────────────────────────────── */
+.footer{
+  position:relative;z-index:1;
+  padding:clamp(3rem,6vw,5rem) clamp(1rem,5vw,3rem);
+  border-top:1px solid var(--line);
+  background:var(--white);
+}
+.footer-inner{
+  max-width:1120px;margin:0 auto;
+  display:flex;align-items:center;justify-content:space-between;
+  flex-wrap:wrap;gap:20px;
+}
+.footer-brand{font-weight:700;font-size:.88rem;color:var(--ink);}
+.footer-brand em{color:var(--red);font-family:'Instrument Serif',serif;font-style:italic;}
+.footer-links{display:flex;gap:20px;flex-wrap:wrap;}
+.footer-links a{font-size:.78rem;color:var(--ink2);transition:color .15s;}
+.footer-links a:hover{color:var(--red);}
+.footer-copy{font-size:.72rem;color:var(--ink3);margin-top:1rem;width:100%;}
+
+/* ─── SCROLL REVEAL ──────────────────────────────── */
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s var(--ease),transform .65s var(--ease);}
+.reveal.in{opacity:1;transform:none;}
+.reveal-left{opacity:0;transform:translateX(-22px);transition:opacity .65s var(--ease),transform .65s var(--ease);}
+.reveal-left.in{opacity:1;transform:none;}
+.reveal-right{opacity:0;transform:translateX(22px);transition:opacity .65s var(--ease),transform .65s var(--ease);}
+.reveal-right.in{opacity:1;transform:none;}
+.stagger>*{opacity:0;transform:translateY(18px);transition:opacity .5s var(--ease),transform .5s var(--ease);}
+.stagger.in>*:nth-child(1){opacity:1;transform:none;transition-delay:.04s;}
+.stagger.in>*:nth-child(2){opacity:1;transform:none;transition-delay:.09s;}
+.stagger.in>*:nth-child(3){opacity:1;transform:none;transition-delay:.14s;}
+.stagger.in>*:nth-child(4){opacity:1;transform:none;transition-delay:.19s;}
+.stagger.in>*:nth-child(5){opacity:1;transform:none;transition-delay:.24s;}
+.stagger.in>*:nth-child(6){opacity:1;transform:none;transition-delay:.29s;}
+
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══════════════════════════════════════ -->
+<nav class="nav">
+  <a class="nbrand" href="memeexchangecommunism.html">
+    <div class="nlogo">
+      <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </div>
+    r/MemeExchangeCommunism
+  </a>
+  <div class="nright">
+    <a class="nbtn-ghost" href="memeexchangecommunism.html">
+      ← Back to main site
+    </a>
+    <a class="nbtn" href="https://royalpgytpc.github.io/MemeExchangeCommunism/Modapp.html" target="_blank">
+      Apply now →
+    </a>
+  </div>
+</nav>
+
+<!-- ══ HERO ══════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <div class="hero-eyebrow">
+        <svg width="8" height="8" viewBox="0 0 24 24" fill="currentColor"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        Official Community Mod Election
+      </div>
+
+      <h1 class="hero-h">
+        <span><span class="slash">r/</span>Meme</span>
+        <br>Exchange
+        <br>Communism
+        <span class="sub-word">Early 2026 Elections</span>
+      </h1>
+
+      <div class="hero-rule"></div>
+
+      <div class="hero-tagline">
+        The community picks<br>its <em>own</em> moderators.
+      </div>
+
+      <p class="hero-sub">
+        Want to help run r/MemeExchangeCommunism? A new mod slot is open. Any member can put themselves forward — the community votes, the community decides.
+      </p>
+
+      <div class="hero-ctas">
+        <a class="cta-primary" href="https://royalpgytpc.github.io/MemeExchangeCommunism/Modapp.html" target="_blank">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          Submit your application
+        </a>
+        <a class="cta-secondary" href="#how-it-works">
+          How it works
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <!-- Ballot box SVG -->
+    <div class="hero-ballot">
+      <div class="ballot-box-wrap">
+        <svg viewBox="0 0 220 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Box body -->
+          <rect x="30" y="90" width="160" height="100" rx="4" fill="#e8001a"/>
+          <!-- Box side shadow -->
+          <path d="M190 90 L210 110 L210 210 L190 190 Z" fill="#a8001a"/>
+          <path d="M30 190 L50 210 L210 210 L190 190 Z" fill="#c0001a"/>
+          <!-- Slot top -->
+          <rect x="30" y="82" width="160" height="14" rx="3" fill="#c0001a"/>
+          <!-- Slot opening -->
+          <rect x="80" y="78" width="60" height="10" rx="2" fill="#8a0015"/>
+          <!-- Ballot paper -->
+          <rect x="92" y="24" width="48" height="64" rx="3" fill="white" transform="rotate(-12 116 56)"/>
+          <line x1="100" y1="42" x2="124" y2="42" stroke="#e0ddd8" stroke-width="2" transform="rotate(-12 112 42)"/>
+          <line x1="100" y1="50" x2="130" y2="50" stroke="#e0ddd8" stroke-width="2" transform="rotate(-12 115 50)"/>
+          <line x1="100" y1="58" x2="120" y2="58" stroke="#e8001a" stroke-width="2" transform="rotate(-12 110 58)"/>
+          <!-- Check mark on ballot -->
+          <path d="M96 68 L102 74 L114 60" stroke="#e8001a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" transform="rotate(-12 105 67)"/>
+          <!-- Highlight line on box -->
+          <line x1="172" y1="95" x2="172" y2="185" stroke="rgba(255,255,255,0.18)" stroke-width="2"/>
+        </svg>
+
+        <div class="official-stamp">Official Community Mod Election</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHAT YOU'RE APPLYING FOR ══════════════════ -->
+<section class="section" id="role">
+  <div class="section-inner">
+    <div class="what-grid">
+      <div class="reveal-left">
+        <span class="section-eyebrow">The role</span>
+        <h2 class="section-h">What does a<br><em>moderator</em> do?</h2>
+        <div class="what-text">
+          <p>Mods keep r/MemeExchangeCommunism running. That means enforcing the rules, reviewing reports, keeping spam out, and making sure the community stays what it's supposed to be — <strong>a place where memes are free to post and share.</strong></p>
+          <p>This isn't a power trip. It's a responsibility. You represent <strong>36,900+ members</strong> who trusted the community's process to put you there.</p>
+          <p>All mods beyond the founding team are elected. u/Stunning-Host-5936 runs and independently audits every election. No appointments, no favouritism — the community votes and that's the result.</p>
+        </div>
+      </div>
+
+      <div class="reveal-right">
+        <div class="what-card">
+          <div class="what-card-title">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+            Day-to-day responsibilities
+          </div>
+          <div class="role-item">
+            <div class="role-n">1</div>
+            <div>
+              <h4>Review and action reports</h4>
+              <p>Posts and comments flagged by members need a human decision. Remove, approve, or escalate to the team.</p>
+            </div>
+          </div>
+          <div class="role-item">
+            <div class="role-n">2</div>
+            <div>
+              <h4>Enforce the sub rules</h4>
+              <p>11 rules including zero tolerance on hate speech, doxxing, and death threats. Know them. Apply them consistently.</p>
+            </div>
+          </div>
+          <div class="role-item">
+            <div class="role-n">3</div>
+            <div>
+              <h4>Keep spam and bots out</h4>
+              <p>Repost farms, self-promo, currency farming — all covered by rules. MemeCoin's Obsidian anti-cheat helps, but human eyes catch the rest.</p>
+            </div>
+          </div>
+          <div class="role-item">
+            <div class="role-n">4</div>
+            <div>
+              <h4>Collaborate with the team</h4>
+              <p>Work alongside u/CertainYam8162, u/Stunning-Host-5936, u/Salt-Penguin, u/North_Potential_4713, and u/Some_Kinda_Username.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ REQUIREMENTS ═══════════════════════════════ -->
+<section class="section req-section" id="requirements">
+  <div class="section-inner">
+    <span class="section-eyebrow reveal">Requirements</span>
+    <h2 class="section-h reveal">What we're<br>looking for.</h2>
+    <p class="section-lead reveal">Hard requirements first, nice-to-haves second. If you meet the musts, the rest is a bonus.</p>
+
+    <div class="req-grid stagger">
+      <div class="req-card">
+        <div class="req-card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+        </div>
+        <h3>Active Reddit account</h3>
+        <p>Your account needs a real history. Brand-new accounts with no comment or post history won't be accepted.</p>
+        <span class="tag-must">Must have</span>
+      </div>
+
+      <div class="req-card">
+        <div class="req-card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+        </div>
+        <h3>Know the rules</h3>
+        <p>All 11 community rules including the 3 amendments. You should be able to explain each one before you apply.</p>
+        <span class="tag-must">Must have</span>
+      </div>
+
+      <div class="req-card">
+        <div class="req-card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
+        </div>
+        <h3>Consistent availability</h3>
+        <p>You don't have to be online 24/7. But you need to check the sub regularly — at least a few times a week.</p>
+        <span class="tag-must">Must have</span>
+      </div>
+
+      <div class="req-card">
+        <div class="req-card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h3>Previous mod experience</h3>
+        <p>Moderated another sub before? That's a big plus. Not a deal-breaker if you haven't, but mention it in your application.</p>
+        <span class="tag-nice">Nice to have</span>
+      </div>
+
+      <div class="req-card">
+        <div class="req-card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+        </div>
+        <h3>Familiarity with MemeCoin</h3>
+        <p>Understanding how the currency system and Obsidian anti-cheat work helps — especially for spotting farming violations.</p>
+        <span class="tag-nice">Nice to have</span>
+      </div>
+
+      <div class="req-card">
+        <div class="req-card-icon">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+        </div>
+        <h3>Belief in internet freedom</h3>
+        <p>The sub was created because a community banned image replies. That principle still matters. You should agree with it.</p>
+        <span class="tag-nice">Nice to have</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PAST ELECTIONS ══════════════════════════════ -->
+<section class="section" id="history">
+  <div class="section-inner">
+    <span class="section-eyebrow reveal">Election history</span>
+    <h2 class="section-h reveal">Two elections.<br><em>Two winners.</em></h2>
+    <p class="section-lead reveal">Every moderator who wasn't part of the founding team won their place through a community vote. This will be the third.</p>
+
+    <div class="history-grid stagger">
+      <div class="history-card">
+        <div class="hc-date">June 28, 2025 · First election</div>
+        <div class="hc-title">u/North_Potential_4713</div>
+        <span class="hc-badge badge-won">✓ Elected — 1st</span>
+        <p class="hc-desc">The community's first ever vote. u/CertainYam8162 opened nominations, members voted, and u/North_Potential_4713 won — becoming the first elected moderator on the sub.</p>
+      </div>
+      <div class="history-card">
+        <div class="hc-date">August 2025 · Second election</div>
+        <div class="hc-title">u/Some_Kinda_Username</div>
+        <span class="hc-badge badge-won">✓ Elected — 2nd</span>
+        <p class="hc-desc">The second election ran a few months after the first. u/Some_Kinda_Username won and joined the team. Still active today.</p>
+      </div>
+      <div class="history-card" style="border-color:var(--red-line);background:var(--red-soft);">
+        <div class="hc-date">Early 2026 · Third election</div>
+        <div class="hc-title">That could be you.</div>
+        <span class="hc-badge badge-red">Applications open</span>
+        <p class="hc-desc">The third slot is open. Applications are being accepted now. The community will vote. The winner joins the mod team.</p>
+      </div>
+      <div class="history-card">
+        <div class="hc-date">Every election</div>
+        <div class="hc-title">Audited by u/Stunning-Host-5936</div>
+        <span class="hc-badge" style="color:var(--ink3);border-color:var(--line);background:transparent;display:inline-flex;">Independent audit</span>
+        <p class="hc-desc">Every election is run and independently audited by u/Stunning-Host-5936. No backroom deals. No appointments. The process is transparent.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ═══════════════════════════════ -->
+<section class="section" id="how-it-works" style="background:var(--paper);">
+  <div class="section-inner">
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:clamp(2rem,5vw,5rem);align-items:start;" class="how-grid">
+      <div class="reveal-left">
+        <span class="section-eyebrow">The process</span>
+        <h2 class="section-h">How the election<br>actually <em>works.</em></h2>
+        <p class="section-lead" style="margin-bottom:0;">Open. Audited. Community-run. This is how r/MEC has always picked its mods and how it always will.</p>
+      </div>
+      <div class="timeline reveal-right">
+        <div class="tl-item">
+          <div class="tl-dot-wrap"><div class="tl-dot">1</div></div>
+          <div class="tl-body">
+            <div class="tl-phase">Now open</div>
+            <div class="tl-title">Submit your application</div>
+            <p class="tl-desc">Fill in the application form at the link below. Tell the community who you are, why you want to mod, and what you'd bring to the team.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot-wrap"><div class="tl-dot">2</div></div>
+          <div class="tl-body">
+            <div class="tl-phase">Nominations close</div>
+            <div class="tl-title">Candidate list published</div>
+            <p class="tl-desc">All candidates are listed publicly. The community can review applications and ask questions before voting opens.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot-wrap"><div class="tl-dot">3</div></div>
+          <div class="tl-body">
+            <div class="tl-phase">Voting period</div>
+            <div class="tl-title">The community votes</div>
+            <p class="tl-desc">Open vote for all members. Every active member of r/MemeExchangeCommunism can cast their vote. Participation is encouraged.</p>
+          </div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-dot-wrap"><div class="tl-dot">4</div></div>
+          <div class="tl-body">
+            <div class="tl-phase">Post-election</div>
+            <div class="tl-title">Independent audit + result</div>
+            <p class="tl-desc">u/Stunning-Host-5936 audits the results for integrity. The winner is announced. They join the team and start moderating.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<style>
+@media(max-width:780px){ .how-grid{grid-template-columns:1fr !important;} }
+</style>
+
+<!-- ══ APPLY CTA ═══════════════════════════════════ -->
+<section class="apply-section">
+  <div class="apply-inner">
+    <div class="reveal-left">
+      <span class="apply-label">Applications open now</span>
+      <h2 class="apply-h">Put yourself<br>forward. <em>Let the community decide.</em></h2>
+      <p class="apply-sub">Fill in the application form. Tell the community who you are. The vote does the rest. This is how r/MemeExchangeCommunism has always worked.</p>
+    </div>
+    <div class="reveal-right" style="display:flex;flex-direction:column;gap:16px;align-items:flex-start;">
+      <a class="apply-btn" href="https://royalpgytpc.github.io/MemeExchangeCommunism/Modapp.html" target="_blank">
+        Apply to be a mod
+        <svg class="arrow" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg>
+      </a>
+      <div style="font-size:.75rem;color:rgba(255,255,255,.28);line-height:1.55;">
+        Questions? Join the
+        <a href="https://discord.gg/Sys5nNmfE7" target="_blank" style="color:rgba(255,255,255,.5);text-decoration:underline;">Discord</a>
+        or contact
+        <a href="mailto:rep.memeexchangecommunism@gmail.com" style="color:rgba(255,255,255,.5);text-decoration:underline;">rep.memeexchangecommunism@gmail.com</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══════════════════════════════════════ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">r/<em>MemeExchange</em>Communism</div>
+    <div class="footer-links">
+      <a href="memeexchangecommunism.html">Home</a>
+      <a href="news.html">News</a>
+      <a href="https://www.reddit.com/r/memeexchangecommunism/" target="_blank">Reddit</a>
+      <a href="https://discord.gg/Sys5nNmfE7" target="_blank">Discord</a>
+      <a href="https://royalpgytpc.github.io/MemeExchangeCommunism/Modapp.html" target="_blank">Apply</a>
+    </div>
+    <p class="footer-copy">© r/MemeExchangeCommunism · All elections audited by u/Stunning-Host-5936 · Est. May 5, 2025</p>
+  </div>
+</footer>
+
+<script>
+/* Scroll reveal */
+var obs = new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); }
+  });
+},{threshold:.07});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger').forEach(function(el){ obs.observe(el); });
+</script>
+</body>
+</html>

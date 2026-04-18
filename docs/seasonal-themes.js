@@ -355,7 +355,7 @@ if(theme==='420'){
     'html[data-seasonal-theme] body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9994;'+
       'background:radial-gradient(ellipse 100% 100% at 50% 50%,transparent 55%,rgba(0,25,0,.22) 100%);}'
   );
-  makeBanner('🍃 <span>Happy 4/20 — Stay Chill</span> 🌿',
+  makeBanner('',
     'linear-gradient(90deg,#0a1f05,#1a3d0f,#0a1f05)','#a8ff78');
 
   addEventListener('mousemove',function(){ spawnTrail(['🍃','✦','·','❋'],['#39c114','#a8ff78','#d4ff00'],2,40); });
@@ -802,16 +802,179 @@ if(theme==='anniversary'){
   makeParticles(15,FallP,['🎊','🎉','✦','★'],ACOLS,{speed:[0.4,1.0]});
 }
 
+/* ─────────────────────── 🗳️ ELECTION SEASON ────── */
+if(theme==='electionseason'){
+  var ECOLS2=['#e8001a','#0d0d0d','#fff','#c0001a','#888'];
+
+  injectVars({
+    '--orange':      '#e8001a',
+    '--orange-soft': 'rgba(232,0,26,.10)',
+    '--orange-line': 'rgba(232,0,26,.24)',
+    '--gold':        '#e8001a',
+    '--green':       '#1a1a1a',
+    '--purple':      '#555',
+  },
+    /* ── scrollbar ── */
+    'html[data-seasonal-theme] ::-webkit-scrollbar-thumb{background:#e8001a;}'+
+    'html[data-seasonal-theme] ::selection{background:#e8001a;color:#fff;}'+
+
+    /* ── ballot-paper grid overlay on body ── */
+    'html[data-seasonal-theme] body::before{'+
+      'content:"";position:fixed;inset:0;pointer-events:none;z-index:9993;'+
+      'background-image:'+
+        'linear-gradient(rgba(232,0,26,.04) 1px,transparent 1px),'+
+        'linear-gradient(90deg,rgba(232,0,26,.04) 1px,transparent 1px);'+
+      'background-size:48px 48px;'+
+      'mask-image:radial-gradient(ellipse 80% 60% at 50% 20%,rgba(0,0,0,.3),transparent 75%);'+
+    '}'+
+
+    /* ── red underline pulse on all section headings ── */
+    '@keyframes st-vote-pulse{0%,100%{box-shadow:0 3px 0 0 #e8001a}50%{box-shadow:0 3px 0 0 rgba(232,0,26,.3)}}'+
+    'html[data-seasonal-theme] .heading,html[data-seasonal-theme] .section-h{'+
+      'border-bottom:3px solid #e8001a;display:inline-block;padding-bottom:2px;'+
+      'animation:st-vote-pulse 2.5s ease-in-out infinite;'+
+    '}'+
+
+    /* ── CTA buttons get a "vote" stamp feel ── */
+    'html[data-seasonal-theme] .hero-cta.solid,'+
+    'html[data-seasonal-theme] .nav-btn.primary,'+
+    'html[data-seasonal-theme] .cta-primary,'+
+    'html[data-seasonal-theme] .apply-btn{'+
+      'outline:2px solid #e8001a;outline-offset:3px;'+
+      'animation:none;'+
+    '}'+
+
+    /* ── vote tally counter watermark on hero ── */
+    'html[data-seasonal-theme] .hero::before{'+
+      'content:"VOTE";position:absolute;right:-20px;top:50%;transform:translateY(-50%) rotate(12deg);'+
+      'font-family:"Geist",system-ui,sans-serif;font-weight:900;'+
+      'font-size:clamp(8rem,20vw,16rem);color:rgba(232,0,26,.05);'+
+      'pointer-events:none;z-index:0;letter-spacing:-5px;'+
+      'user-select:none;'+
+    '}'
+  );
+
+  /* ── Banner with live "polls open" indicator ── */
+  var bnrEl = makeBanner(
+    '🗳️ <span>Early 2026 Elections — Mod applications open</span>' +
+    '&nbsp;&nbsp;<a href="https://royalpgytpc.github.io/MemeExchangeCommunism/Modapp.html" '+
+    'target="_blank" id="st-apply-link" style="'+
+      'background:#fff;color:#e8001a;padding:2px 10px;border-radius:100px;'+
+      'font-weight:800;font-size:.68rem;letter-spacing:.5px;text-decoration:none;'+
+      'transition:background .15s,color .15s;'+
+    '">Apply now →</a>',
+    'linear-gradient(90deg,#0d0d0d,#1a0005,#0d0d0d)',
+    '#fff'
+  );
+
+  /* ── Cursor: floating ballot papers ── */
+  addEventListener('mousemove', function () {
+    spawnTrail(
+      pick(['🗳️','✦','·','▪','★']),
+      ['#e8001a','#fff','#888','#c0001a'],
+      3, 35
+    );
+  });
+
+  /* ── Falling ballot papers + check marks ── */
+  makeParticles(25, FallP,
+    ['🗳️','✦','▪','·','★','✓'],
+    ['#e8001a','#c0001a','#0d0d0d','#888'],
+    {speed:[0.3, 0.9], minSz:10, maxSz:20}
+  );
+
+  /* ── Canvas: vote-count ticker strips (like election night) ── */
+  var tickers = [];
+  for (var t = 0; t < 6; t++) {
+    tickers.push({
+      x:    rnd(0, innerWidth),
+      y:    rnd(0, innerHeight),
+      text: pick(['▮▮▮▮▯','▮▮▮▯▯','▮▮▮▮▮','▮▯▯▯▯','▮▮▯▯▯']),
+      a:    rnd(0.03, 0.07),
+      sz:   rnd(10, 16),
+      col:  pick(['#e8001a','#333']),
+      drift: rnd(-0.15, 0.15),
+    });
+  }
+  extraDrawFns.push(function () {
+    tickers.forEach(function (tk) {
+      tk.x += tk.drift;
+      if (tk.x > cvs.width + 60)  tk.x = -60;
+      if (tk.x < -60) tk.x = cvs.width + 60;
+      ctx.save();
+      ctx.globalAlpha = tk.a;
+      ctx.font = 'bold ' + tk.sz + 'px monospace';
+      ctx.fillStyle = tk.col;
+      ctx.textAlign = 'center';
+      ctx.textBaseline = 'middle';
+      ctx.fillText(tk.text, tk.x, tk.y);
+      ctx.restore();
+    });
+  });
+
+  /* ── Stamp effect: clicking anywhere drops a ✓ stamp ── */
+  addEventListener('click', function (e) {
+    var stamp = el('div', '');
+    stamp.textContent = '✓';
+    stamp.style.cssText =
+      'position:fixed;left:'+e.clientX+'px;top:'+e.clientY+'px;'+
+      'font-size:2.4rem;font-weight:900;color:#e8001a;'+
+      'transform:translate(-50%,-50%) scale(1.8) rotate(-18deg);'+
+      'pointer-events:none;z-index:99999;opacity:0.9;'+
+      'font-family:"Geist",system-ui,sans-serif;'+
+      'transition:transform .35s cubic-bezier(.22,1,.36,1),opacity .35s ease;'+
+      'text-shadow:0 2px 8px rgba(232,0,26,.35);';
+    document.body.appendChild(stamp);
+    /* animate out */
+    setTimeout(function () {
+      stamp.style.transform = 'translate(-50%,-50%) scale(1) rotate(-18deg)';
+      stamp.style.opacity = '0';
+    }, 20);
+    setTimeout(function () { stamp.remove(); }, 400);
+  });
+
+  /* ── "Polls close in" countdown (shows until end of month) ── */
+  var pollClose = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0, 23, 59, 59);
+  var cdBox = el('div', '');
+  cdBox.style.cssText =
+    'position:fixed;bottom:24px;right:24px;z-index:99998;'+
+    'background:#0d0d0d;color:#fff;'+
+    'padding:14px 20px;border-radius:12px;'+
+    'font-family:"Geist",system-ui,sans-serif;'+
+    'border:1px solid rgba(232,0,26,.35);'+
+    'box-shadow:0 4px 24px rgba(232,0,26,.2);'+
+    'min-width:200px;';
+  cdBox.innerHTML =
+    '<div style="font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;'+
+    'color:#e8001a;margin-bottom:6px;">🗳️ Applications close</div>'+
+    '<div id="st-poll-cd" style="font-size:1.1rem;font-weight:900;letter-spacing:-.5px;color:#fff;"></div>';
+  document.body.appendChild(cdBox);
+
+  function updatePollCd() {
+    var diff2 = pollClose - new Date();
+    var cdEl2 = qs('#st-poll-cd');
+    if (!cdEl2) return;
+    if (diff2 <= 0) { cdEl2.textContent = 'Closing soon!'; return; }
+    var dd = Math.floor(diff2 / 86400000);
+    var hh = Math.floor((diff2 % 86400000) / 3600000);
+    var mm = Math.floor((diff2 % 3600000) / 60000);
+    var ss = Math.floor((diff2 % 60000) / 1000);
+    cdEl2.textContent = dd + 'd ' + hh + 'h ' + mm + 'm ' + ss + 's';
+  }
+  updatePollCd();
+  setInterval(updatePollCd, 1000);
+}
+
 /* ══════════════════════════════════════════════════
    UNKNOWN WARNING
 ══════════════════════════════════════════════════ */
 var known=['pride','christmas','halloween','420','newyear','valentines',
   'stpatricks','easter','thanksgiving','summer','diwali','midautumn',
-  'bonfirenight','anniversary'];
+  'bonfirenight','anniversary','electionseason'];
 if(known.indexOf(theme)===-1){
   console.warn('[seasonal-themes v2] Unknown theme: "'+raw+'"\nAvailable: '+
     'Pride, Christmas, Halloween, 420, NewYear, Valentines, StPatricks, '+
-    'Easter, Thanksgiving, Summer, Diwali, MidAutumn, BonfireNight, Anniversary');
+    'Easter, Thanksgiving, Summer, Diwali, MidAutumn, BonfireNight, Anniversary, ElectionSeason');
 }
 
 })();
