@@ -355,7 +355,7 @@ if(theme==='420'){
     'html[data-seasonal-theme] body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:9994;'+
       'background:radial-gradient(ellipse 100% 100% at 50% 50%,transparent 55%,rgba(0,25,0,.22) 100%);}'
   );
-  makeBanner('',
+  makeBanner('🍃 <span>Happy 4/20 — Stay Chill</span> 🌿',
     'linear-gradient(90deg,#0a1f05,#1a3d0f,#0a1f05)','#a8ff78');
 
   addEventListener('mousemove',function(){ spawnTrail(['🍃','✦','·','❋'],['#39c114','#a8ff78','#d4ff00'],2,40); });
@@ -856,7 +856,7 @@ if(theme==='electionseason'){
 
   /* ── Banner with live "polls open" indicator ── */
   var bnrEl = makeBanner(
-    '🗳️ <span>Early 2026 Elections — Mod applications open</span>' +
+    '🗳️ <span>Early 2026 Elections — Applications close <strong>May 17</strong></span>' +
     '&nbsp;&nbsp;<a href="https://royalpgytpc.github.io/MemeExchangeCommunism/Modapp.html" '+
     'target="_blank" id="st-apply-link" style="'+
       'background:#fff;color:#e8001a;padding:2px 10px;border-radius:100px;'+
@@ -934,7 +934,7 @@ if(theme==='electionseason'){
   });
 
   /* ── "Polls close in" countdown (shows until end of month) ── */
-  var pollClose = new Date(new Date().getFullYear(), new Date().getMonth() + 1, 0, 23, 59, 59);
+  var pollClose = new Date(2026, 4, 17, 23, 59, 59); /* May 17 2026 */
   var cdBox = el('div', '');
   cdBox.style.cssText =
     'position:fixed;bottom:24px;right:24px;z-index:99998;'+
@@ -946,7 +946,7 @@ if(theme==='electionseason'){
     'min-width:200px;';
   cdBox.innerHTML =
     '<div style="font-size:.6rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;'+
-    'color:#e8001a;margin-bottom:6px;">🗳️ Applications close</div>'+
+    'color:#e8001a;margin-bottom:6px;">🗳️ Applications close May 17</div>'+
     '<div id="st-poll-cd" style="font-size:1.1rem;font-weight:900;letter-spacing:-.5px;color:#fff;"></div>';
   document.body.appendChild(cdBox);
 
