@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+<link rel="stylesheet" href="../community.css">
 <!-- Article metadata — read by news.html index -->
 <meta name="news:title"   content="Mod Election campaigning begins, Now">
 <meta name="news:desc"    content="[ARCHIVED]">
@@ -107,6 +107,8 @@ a{color:inherit;text-decoration:none;}
   </div>
 </article>
 
+<div id="mec-comments" data-article="mecbn"></div>
+
 <script>
 document.documentElement.setAttribute('data-theme','dark');
 function toggleTheme(){
@@ -116,5 +118,7 @@ function toggleTheme(){
   document.getElementById('ico-moon').style.display=d?'block':'none';
 }
 </script>
+<script type="module" src="../comments-widget.js"></script>
+<script type="module" src="../account-avatar.js"></script>
 </body>
 </html>
