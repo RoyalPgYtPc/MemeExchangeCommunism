@@ -1,0 +1,937 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Community Jury — r/MemeExchangeCommunism</title>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500;600;700;900&display=swap" rel="stylesheet">
+<style>
+/* ── tokens ── */
+:root{
+  --o:       #7c5cff;
+  --oh:      #6b46e0;
+  --os:      rgba(124,92,255,.10);
+  --ol:      rgba(124,92,255,.24);
+  --gold:    #f5c518;
+  --green:   #22c997;
+  --red:     #ef4444;
+  --amber:   #f59e0b;
+  --r:       12px;
+  --ease:    cubic-bezier(.22,1,.36,1);
+  --easeb:   cubic-bezier(.34,1.56,.64,1);
+}
+html, html[data-theme="dark"]{
+  --bg:      #0a0a0b;
+  --bg1:     #0f0f11;
+  --bg2:     #141416;
+  --bg3:     #1a1a1e;
+  --bg4:     #222228;
+  --line:    rgba(255,255,255,.07);
+  --line2:   rgba(255,255,255,.03);
+  --tx:      #f0f0f4;
+  --tx2:     rgba(240,240,244,.55);
+  --tx3:     rgba(240,240,244,.28);
+  --tx4:     rgba(240,240,244,.10);
+  --nav-bg:  rgba(10,10,11,.88);
+  --grid-ln: rgba(255,255,255,.045);
+  --glow:    rgba(124,92,255,.16);
+}
+html[data-theme="light"]{
+  --bg:      #fafafa;
+  --bg1:     #f5f5f7;
+  --bg2:     #ffffff;
+  --bg3:     #f0f0f3;
+  --bg4:     #e8e8ec;
+  --line:    rgba(0,0,0,.07);
+  --line2:   rgba(0,0,0,.04);
+  --tx:      #111113;
+  --tx2:     rgba(17,17,19,.52);
+  --tx3:     rgba(17,17,19,.30);
+  --tx4:     rgba(17,17,19,.10);
+  --nav-bg:  rgba(250,250,250,.90);
+  --grid-ln: rgba(0,0,0,.04);
+  --glow:    rgba(124,92,255,.08);
+}
+
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{
+  background:var(--bg);color:var(--tx);
+  font-family:'Geist',system-ui,sans-serif;line-height:1.6;
+  overflow-x:hidden;-webkit-font-smoothing:antialiased;min-height:100vh;
+}
+::selection{background:var(--o);color:#fff;}
+::-webkit-scrollbar{width:3px;}
+::-webkit-scrollbar-track{background:transparent;}
+::-webkit-scrollbar-thumb{background:var(--line);border-radius:2px;}
+::-webkit-scrollbar-thumb:hover{background:var(--o);}
+a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;}
+
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;
+  background-image:linear-gradient(var(--grid-ln) 1px,transparent 1px),linear-gradient(90deg,var(--grid-ln) 1px,transparent 1px);
+  background-size:64px 64px;animation:gridDrift 40s linear infinite;
+  mask-image:radial-gradient(ellipse 90% 70% at 50% 10%,rgba(0,0,0,.4),transparent 80%);
+  pointer-events:none;transition:background-image .35s;
+}
+@keyframes gridDrift{to{background-position:64px 64px;}}
+body::after{
+  content:'';position:fixed;inset:0;z-index:0;
+  background:radial-gradient(ellipse 55% 36% at 50% -5%,var(--glow) 0%,transparent 65%);
+  pointer-events:none;transition:background .35s;
+}
+
+/* ── nav ── */
+.nav{
+  position:sticky;top:0;z-index:200;height:58px;background:var(--nav-bg);
+  border-bottom:1px solid var(--line);backdrop-filter:blur(20px) saturate(160%);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 clamp(1rem,4vw,2.5rem);transition:background .35s;
+}
+.nbrand{display:flex;align-items:center;gap:10px;font-weight:700;font-size:.88rem;color:var(--tx);letter-spacing:-.2px;}
+.nlogo{width:30px;height:30px;background:var(--o);border-radius:8px;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:transform .3s var(--easeb);}
+.nbrand:hover .nlogo{transform:rotate(-12deg) scale(1.1);}
+.nright{display:flex;align-items:center;gap:8px;}
+.theme-btn{width:32px;height:32px;border-radius:8px;background:var(--bg3);border:1px solid var(--line);color:var(--tx3);cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;}
+.theme-btn:hover{color:var(--tx);border-color:var(--ol);background:var(--os);}
+.njoin{display:inline-flex;align-items:center;gap:7px;background:var(--o);color:#fff;border:none;border-radius:8px;padding:7px 16px;font-size:.82rem;font-weight:700;cursor:pointer;transition:all .2s;text-decoration:none;}
+.njoin:hover{background:var(--oh);transform:translateY(-1px);box-shadow:0 6px 20px rgba(124,92,255,.35);}
+
+/* ── shared section shell ── */
+.section{position:relative;z-index:1;padding:clamp(3.5rem,7vw,6rem) clamp(1rem,4vw,2.5rem);border-bottom:1px solid var(--line);}
+.section-inner{max-width:1080px;margin:0 auto;}
+.kicker{font-size:.68rem;font-weight:700;letter-spacing:2.5px;text-transform:uppercase;color:var(--o);margin-bottom:1.1rem;display:block;}
+.heading{font-family:'Instrument Serif',serif;font-size:clamp(1.7rem,4vw,2.7rem);line-height:1.05;letter-spacing:-.8px;color:var(--tx);margin-bottom:1rem;}
+.heading em{color:var(--o);font-style:italic;}
+.subhead{font-size:clamp(.88rem,1.6vw,1rem);font-weight:300;color:var(--tx2);max-width:560px;line-height:1.75;margin-bottom:2.5rem;}
+
+@keyframes fadeUp{from{opacity:0;transform:translateY(16px);}to{opacity:1;transform:none;}}
+
+/* ── hero ── */
+.hero{position:relative;z-index:1;padding:clamp(4rem,9vw,7rem) clamp(1rem,4vw,2.5rem) clamp(3rem,6vw,5rem);border-bottom:1px solid var(--line);overflow:hidden;}
+.hero-inner{max-width:1080px;margin:0 auto;display:grid;grid-template-columns:1fr auto;gap:clamp(2rem,5vw,4rem);align-items:center;}
+@media(max-width:820px){.hero-inner{grid-template-columns:1fr;}}
+.hero-eyebrow{
+  display:inline-flex;align-items:center;gap:8px;font-size:.7rem;font-weight:700;letter-spacing:2px;text-transform:uppercase;
+  color:var(--o);margin-bottom:1.6rem;padding:5px 14px;border-radius:100px;background:var(--os);border:1px solid var(--ol);
+  animation:fadeUp .5s var(--ease) both;
+}
+.eyebrow-dot{width:6px;height:6px;background:var(--o);border-radius:50%;animation:pulse 2s ease infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:.5;transform:scale(.7);}}
+.hero-h1{font-family:'Instrument Serif',Georgia,serif;font-size:clamp(2.4rem,6vw,4.3rem);line-height:1.0;letter-spacing:-1.5px;margin-bottom:1.2rem;animation:fadeUp .5s .06s var(--ease) both;}
+.hero-h1 em{color:var(--o);font-style:italic;}
+.hero-p{font-size:clamp(.9rem,1.8vw,1.02rem);font-weight:300;color:var(--tx2);line-height:1.75;max-width:520px;margin-bottom:2rem;animation:fadeUp .5s .12s var(--ease) both;}
+.hero-ctas{display:flex;align-items:center;gap:12px;flex-wrap:wrap;animation:fadeUp .5s .18s var(--ease) both;}
+.cta-primary{display:inline-flex;align-items:center;gap:9px;background:var(--o);color:#fff;border-radius:10px;padding:13px 26px;font-size:.9rem;font-weight:700;transition:all .22s var(--ease);border:none;cursor:pointer;text-decoration:none;}
+.cta-primary:hover{background:var(--oh);transform:translateY(-2px);box-shadow:0 12px 36px rgba(124,92,255,.32);}
+.cta-secondary{display:inline-flex;align-items:center;gap:7px;background:transparent;color:var(--tx);border:1.5px solid var(--line);border-radius:10px;padding:12px 20px;font-size:.86rem;font-weight:600;transition:all .22s var(--ease);cursor:pointer;text-decoration:none;}
+.cta-secondary:hover{border-color:var(--ol);color:var(--o);background:var(--os);}
+
+/* Scales icon */
+.hero-icon{width:clamp(140px,20vw,200px);flex-shrink:0;animation:fadeUp .5s .24s var(--ease) both;}
+@media(max-width:820px){.hero-icon{display:none;}}
+.scale-svg{animation:scaleTilt 4s ease-in-out infinite;transform-origin:140px 60px;}
+@keyframes scaleTilt{0%,100%{transform:rotate(-2.5deg);}50%{transform:rotate(2.5deg);}}
+
+/* ── what jury does — 3 cards ── */
+.role-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;}
+@media(max-width:760px){.role-grid{grid-template-columns:1fr;}}
+.role-card{
+  background:var(--bg2);border:1px solid var(--line);border-radius:14px;padding:1.5rem;
+  transition:border-color .25s,transform .25s var(--ease),box-shadow .25s;position:relative;overflow:hidden;
+}
+.role-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--o);transform:scaleX(0);transform-origin:left;transition:transform .3s var(--ease);}
+.role-card:hover{border-color:var(--ol);transform:translateY(-3px);box-shadow:0 12px 36px rgba(0,0,0,.18);}
+.role-card:hover::before{transform:scaleX(1);}
+.role-card-icon{width:40px;height:40px;border-radius:10px;background:var(--os);border:1px solid var(--ol);display:flex;align-items:center;justify-content:center;color:var(--o);margin-bottom:1rem;transition:all .25s var(--easeb);}
+.role-card:hover .role-card-icon{background:var(--o);color:#fff;transform:scale(1.08) rotate(-4deg);}
+.role-card h3{font-size:.98rem;font-weight:700;margin-bottom:.5rem;color:var(--tx);}
+.role-card p{font-size:.84rem;color:var(--tx2);line-height:1.65;font-weight:300;}
+
+/* ── not-a-mod-role comparison ── */
+.compare-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:1.6rem;}
+@media(max-width:640px){.compare-grid{grid-template-columns:1fr;}}
+.compare-card{border-radius:14px;padding:1.4rem 1.5rem;border:1px solid var(--line);}
+.compare-card.no{background:rgba(239,68,68,.05);border-color:rgba(239,68,68,.18);}
+.compare-card.yes{background:rgba(34,201,151,.05);border-color:rgba(34,201,151,.18);}
+.compare-card h4{font-size:.82rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;margin-bottom:.8rem;display:flex;align-items:center;gap:7px;}
+.compare-card.no h4{color:var(--red);}
+.compare-card.yes h4{color:var(--green);}
+.compare-list{list-style:none;display:flex;flex-direction:column;gap:.55rem;}
+.compare-list li{font-size:.84rem;color:var(--tx2);display:flex;align-items:flex-start;gap:8px;line-height:1.5;}
+.compare-list li svg{flex-shrink:0;margin-top:2px;}
+
+/* ── timeline (how selection works) ── */
+.timeline{display:flex;flex-direction:column;gap:0;max-width:760px;}
+.tl-item{display:flex;gap:22px;align-items:flex-start;position:relative;}
+.tl-item:not(:last-child)::before{content:'';position:absolute;left:17px;top:42px;bottom:-22px;width:1px;background:var(--line);}
+.tl-dot-wrap{flex-shrink:0;padding-top:12px;}
+.tl-dot{width:34px;height:34px;border-radius:10px;background:var(--bg2);border:1.5px solid var(--line);display:flex;align-items:center;justify-content:center;font-weight:900;font-size:.78rem;color:var(--o);position:relative;z-index:1;transition:all .25s var(--easeb);}
+.tl-item:hover .tl-dot{background:var(--o);border-color:var(--o);color:#fff;transform:scale(1.1);}
+.tl-body{padding:12px 0 clamp(1.4rem,3vw,2.2rem);flex:1;}
+.tl-title{font-size:.95rem;font-weight:700;color:var(--tx);margin-bottom:4px;}
+.tl-desc{font-size:.83rem;color:var(--tx2);line-height:1.6;font-weight:300;}
+.tl-desc strong{color:var(--tx);font-weight:600;}
+
+/* ── eligibility requirement chips ── */
+.req-chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:1.2rem;}
+.req-chip{display:inline-flex;align-items:center;gap:8px;background:var(--bg2);border:1px solid var(--line);border-radius:100px;padding:8px 16px;font-size:.84rem;font-weight:600;color:var(--tx);}
+.req-chip svg{color:var(--o);}
+
+.warn-box{
+  margin-top:1.6rem;padding:1rem 1.3rem;border-radius:12px;
+  background:rgba(245,158,11,.07);border:1px solid rgba(245,158,11,.22);
+  display:flex;gap:10px;align-items:flex-start;
+}
+.warn-box svg{color:var(--amber);flex-shrink:0;margin-top:1px;}
+.warn-box p{font-size:.82rem;color:var(--tx2);line-height:1.6;font-weight:300;}
+.warn-box strong{color:var(--tx);font-weight:600;}
+
+/* ── scroll reveal ── */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
+.reveal.in{opacity:1;transform:none;}
+.reveal-left{opacity:0;transform:translateX(-20px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
+.reveal-left.in{opacity:1;transform:none;}
+.reveal-right{opacity:0;transform:translateX(20px);transition:opacity .6s var(--ease),transform .6s var(--ease);}
+.reveal-right.in{opacity:1;transform:none;}
+.stagger>*{opacity:0;transform:translateY(16px);transition:opacity .5s var(--ease),transform .5s var(--ease);}
+.stagger.in>*:nth-child(1){opacity:1;transform:none;transition-delay:.04s;}
+.stagger.in>*:nth-child(2){opacity:1;transform:none;transition-delay:.09s;}
+.stagger.in>*:nth-child(3){opacity:1;transform:none;transition-delay:.14s;}
+
+/* ══════════════════════════════════════
+   APPLICATION FORM SECTION
+══════════════════════════════════════ */
+#apply{border-bottom:none;}
+.apply-grid{display:grid;grid-template-columns:1fr 320px;gap:28px;align-items:start;max-width:1080px;margin:0 auto;}
+@media(max-width:900px){.apply-grid{grid-template-columns:1fr;}.apply-side-col{order:-1;}}
+
+/* progress */
+.prog-wrap{display:flex;align-items:center;gap:14px;padding:1rem 1.6rem;background:var(--bg2);border:1px solid var(--line);border-radius:var(--r) var(--r) 0 0;border-bottom:none;}
+.prog-track{flex:1;height:4px;background:var(--bg4);border-radius:3px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--o),#a78bfa);border-radius:3px;width:0%;transition:width .4s cubic-bezier(.4,0,.2,1);}
+.prog-txt{font-size:.75rem;font-weight:700;color:var(--o);white-space:nowrap;min-width:54px;text-align:right;font-variant-numeric:tabular-nums;}
+
+/* form head */
+.form-head{background:var(--o);padding:clamp(1.2rem,3vw,1.7rem) clamp(1.3rem,3vw,2rem);position:relative;overflow:hidden;}
+.form-head::before{content:'';position:absolute;top:-60px;right:-60px;width:200px;height:200px;background:rgba(255,255,255,.08);border-radius:50%;pointer-events:none;}
+.form-head h2{font-family:'Instrument Serif',serif;font-size:clamp(1.15rem,3vw,1.5rem);color:#fff;margin-bottom:.3rem;position:relative;z-index:1;letter-spacing:-.3px;}
+.form-head p{font-size:.8rem;color:rgba(255,255,255,.75);position:relative;z-index:1;}
+
+.form-body{background:var(--bg1);border:1px solid var(--line);border-top:none;border-radius:0 0 var(--r) var(--r);overflow:hidden;}
+
+/* question rows */
+.q{padding:clamp(1rem,2.5vw,1.4rem) clamp(1.2rem,3vw,1.8rem);border-bottom:1px solid var(--line2);opacity:0;transform:translateY(8px);transition:opacity .35s var(--ease),transform .35s var(--ease);}
+.q.vis{opacity:1;transform:none;}
+.q:last-of-type{border-bottom:none;}
+.ql{font-weight:600;font-size:.87rem;margin-bottom:.7rem;color:var(--tx);line-height:1.45;}
+.req{color:var(--o);}
+.q-sub{display:block;color:var(--tx3);font-size:.74rem;font-weight:400;margin-top:2px;}
+
+.field{width:100%;padding:10px 13px;background:var(--bg3);border:1.5px solid var(--line);border-radius:9px;font-family:'Geist',sans-serif;font-size:.87rem;color:var(--tx);outline:none;transition:border-color .2s,box-shadow .2s,background .2s;}
+.field::placeholder{color:var(--tx3);}
+.field:focus{border-color:var(--o);background:var(--bg2);box-shadow:0 0 0 3px rgba(124,92,255,.13);}
+textarea.field{min-height:76px;resize:vertical;line-height:1.55;}
+
+.opts{display:flex;flex-direction:column;gap:6px;}
+.opt{display:flex;align-items:center;gap:11px;padding:10px 13px;border:1.5px solid var(--line);border-radius:9px;background:var(--bg3);cursor:pointer;transition:border-color .18s,background .18s,box-shadow .18s;user-select:none;}
+.opt:hover{border-color:rgba(255,255,255,.14);background:var(--bg2);}
+.opt:has(input:checked){border-color:var(--ol);background:rgba(124,92,255,.08);box-shadow:0 0 0 3px rgba(124,92,255,.07);}
+.opt input{width:16px;height:16px;accent-color:var(--o);cursor:pointer;flex-shrink:0;}
+.opt.pop{animation:optPop .4s var(--easeb);}
+@keyframes optPop{0%{transform:scale(1);}45%{transform:scale(1.035);box-shadow:0 4px 16px rgba(124,92,255,.22);}100%{transform:scale(1);}}
+.otxt{font-size:.85rem;font-weight:500;line-height:1.4;}
+
+/* submit bar */
+.sbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:1.2rem clamp(1.2rem,3vw,1.8rem);background:var(--bg2);border-top:1px solid var(--line);flex-wrap:wrap;}
+@media(max-width:480px){.sbar{flex-direction:column-reverse;align-items:stretch;}.bsub{justify-content:center;}}
+.bsub{display:inline-flex;align-items:center;gap:8px;background:var(--o);color:#fff;border:none;border-radius:9px;padding:11px clamp(1.4rem,3.5vw,1.8rem);font-size:.9rem;font-weight:700;cursor:pointer;box-shadow:0 3px 18px rgba(124,92,255,.3);transition:all .2s;white-space:nowrap;}
+.bsub:hover{background:var(--oh);transform:translateY(-2px);box-shadow:0 7px 24px rgba(124,92,255,.42);}
+.bsub.loading{opacity:.7;pointer-events:none;}
+.bdot{width:7px;height:7px;background:rgba(255,255,255,.7);border-radius:50%;}
+.bclr{background:none;border:none;color:var(--tx3);font-size:.8rem;cursor:pointer;text-decoration:underline;padding:4px;transition:color .15s;}
+.bclr:hover{color:var(--tx2);}
+.spin{width:15px;height:15px;border:2px solid rgba(255,255,255,.35);border-top-color:#fff;border-radius:50%;animation:spin .65s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg);}}
+
+.errmsg{display:none;background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.3);border-radius:9px;padding:.8rem 1.1rem;margin:0 clamp(1.2rem,3vw,1.8rem) .8rem;font-size:.82rem;color:#f87171;line-height:1.5;}
+
+/* ── verdict typing status pill ── */
+.verdict-status{
+  display:inline-flex;align-items:center;gap:7px;
+  margin-top:8px;padding:5px 12px;border-radius:100px;
+  background:var(--bg3);border:1px solid var(--line);
+  font-size:.75rem;font-weight:700;color:var(--tx3);
+  opacity:0;transform:translateY(-4px) scale(.94);
+  transition:opacity .25s var(--ease),transform .25s var(--easeb),
+             background .35s var(--ease),border-color .35s var(--ease),color .35s var(--ease);
+  pointer-events:none;
+}
+.verdict-status.show{opacity:1;transform:none;}
+.verdict-status.tier-1{background:var(--os);border-color:var(--ol);color:var(--o);}
+.verdict-status.tier-2{background:rgba(167,139,250,.1);border-color:rgba(167,139,250,.28);color:#a78bfa;}
+.verdict-status.tier-3{background:rgba(245,158,11,.1);border-color:rgba(245,158,11,.28);color:var(--amber);}
+.verdict-status.tier-4{background:rgba(34,201,151,.1);border-color:rgba(34,201,151,.3);color:var(--green);}
+.verdict-status.idle{opacity:.7;}
+.vs-emoji{display:inline-block;transition:transform .3s var(--easeb);}
+.verdict-status.active .vs-emoji{animation:vsBob 1s ease-in-out infinite;}
+@keyframes vsBob{0%,100%{transform:translateY(0) rotate(0deg);}50%{transform:translateY(-2px) rotate(-6deg);}}
+.vs-dots{display:inline-flex;gap:2px;margin-left:1px;}
+.vs-dots span{width:3px;height:3px;border-radius:50%;background:currentColor;opacity:.3;}
+.verdict-status.active .vs-dots span{animation:vsDot 1.1s ease-in-out infinite;}
+.verdict-status.active .vs-dots span:nth-child(2){animation-delay:.15s;}
+.verdict-status.active .vs-dots span:nth-child(3){animation-delay:.3s;}
+@keyframes vsDot{0%,60%,100%{opacity:.25;transform:scale(.8);}30%{opacity:1;transform:scale(1.15);}}
+
+/* success */
+#success{display:none;background:var(--bg1);border:1px solid var(--line);border-radius:var(--r);padding:clamp(2.5rem,7vw,4.5rem) 2rem;text-align:center;animation:fadeUp .5s var(--ease) both;}
+.sring{width:64px;height:64px;background:var(--o);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 1.4rem;font-size:1.6rem;box-shadow:0 0 0 12px rgba(124,92,255,.12),0 0 0 24px rgba(124,92,255,.05);animation:ringPop .5s .1s var(--easeb) both;}
+@keyframes ringPop{from{transform:scale(.6);opacity:0;}to{transform:scale(1);opacity:1;}}
+#success h3{font-family:'Instrument Serif',serif;font-size:clamp(1.5rem,3vw,2rem);letter-spacing:-.4px;margin-bottom:.6rem;}
+#success p{color:var(--tx2);font-size:.88rem;line-height:1.6;}
+#success .sub-link{display:inline-flex;align-items:center;gap:7px;margin-top:1.6rem;background:var(--o);color:#fff;padding:10px 22px;border-radius:9px;font-weight:700;font-size:.86rem;transition:all .2s;}
+#success .sub-link:hover{background:var(--oh);transform:translateY(-2px);}
+
+.form-wrapper{animation:fadeUp .5s .1s var(--ease) both;}
+
+/* ══════════════════════════════════════
+   SIDEBAR — LIVE ELIGIBILITY CHECK
+══════════════════════════════════════ */
+.elig-card{
+  background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);
+  overflow:hidden;position:sticky;top:78px;
+}
+@media(max-width:900px){.elig-card{position:relative;top:0;}}
+.elig-head{padding:1rem 1.3rem;border-bottom:1px solid var(--line);display:flex;align-items:center;gap:9px;}
+.elig-head svg{color:var(--o);flex-shrink:0;}
+.elig-head h4{font-size:.86rem;font-weight:700;color:var(--tx);}
+.elig-head span{display:block;font-size:.7rem;color:var(--tx3);margin-top:1px;}
+
+.elig-body{padding:1.1rem 1.3rem;}
+.elig-row{display:flex;align-items:center;gap:10px;padding:.6rem 0;border-bottom:1px solid var(--line2);}
+.elig-row:last-child{border-bottom:none;}
+.elig-icon{width:22px;height:22px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .25s var(--easeb);background:var(--bg3);border:1.5px solid var(--line);color:var(--tx3);}
+.elig-icon.pass{background:rgba(34,201,151,.15);border-color:rgba(34,201,151,.4);color:var(--green);}
+.elig-icon.fail{background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.4);color:var(--red);}
+.elig-label{font-size:.82rem;color:var(--tx2);font-weight:500;}
+.elig-row.pass .elig-label{color:var(--tx);}
+
+.elig-status{
+  margin-top:1rem;padding:.8rem 1rem;border-radius:9px;
+  font-size:.8rem;font-weight:600;text-align:center;line-height:1.5;
+  background:var(--bg3);color:var(--tx3);border:1px solid var(--line);
+  transition:all .3s var(--ease);
+}
+.elig-status.ok{background:rgba(34,201,151,.1);border-color:rgba(34,201,151,.3);color:var(--green);}
+.elig-status.bad{background:rgba(239,68,68,.1);border-color:rgba(239,68,68,.3);color:var(--red);}
+.elig-note{font-size:.7rem;color:var(--tx3);margin-top:.7rem;line-height:1.5;text-align:center;}
+
+/* info card under elig card */
+.info-card{background:var(--bg2);border:1px solid var(--line);border-radius:var(--r);padding:1.2rem 1.3rem;margin-top:14px;}
+.info-card h5{font-size:.78rem;font-weight:700;letter-spacing:.5px;text-transform:uppercase;color:var(--tx3);margin-bottom:.8rem;}
+.info-card ul{list-style:none;display:flex;flex-direction:column;gap:.55rem;}
+.info-card li{font-size:.8rem;color:var(--tx2);line-height:1.5;display:flex;gap:7px;}
+.info-card li::before{content:'•';color:var(--o);font-weight:900;}
+
+/* footer */
+.footer{position:relative;z-index:1;padding:clamp(2.5rem,5vw,3.5rem) clamp(1rem,4vw,2.5rem);border-top:1px solid var(--line);background:var(--bg1);}
+.footer-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+.footer-brand{font-weight:700;font-size:.85rem;color:var(--tx);}
+.footer-brand em{color:var(--o);font-family:'Instrument Serif',serif;font-style:italic;}
+.footer-links{display:flex;gap:18px;flex-wrap:wrap;}
+.footer-links a{font-size:.76rem;color:var(--tx2);transition:color .15s;}
+.footer-links a:hover{color:var(--o);}
+</style>
+</head>
+<body>
+
+<!-- ══ NAV ══ -->
+<nav class="nav">
+  <a class="nbrand" href="memeexchangecommunism.html">
+    <div class="nlogo">
+      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+    </div>
+    r/MemeExchangeCommunism
+  </a>
+  <div class="nright">
+    <button class="theme-btn" id="theme-btn" aria-label="Toggle theme">
+      <svg id="ico-sun" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg id="ico-moon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="display:none"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+    <a class="njoin" href="#apply">Apply now →</a>
+  </div>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div>
+      
+      <h1 class="hero-h1">The <em>Community Jury.</em></h1>
+      <p class="hero-p">
+        A new way for the community to weigh in on difficult calls. Not a mod role.
+        Not a daily commitment. Just members helping guide fair outcomes when it matters.
+      </p>
+      <div class="hero-ctas">
+        <a class="cta-primary" href="#apply">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+          Apply to the Jury
+        </a>
+        <a class="cta-secondary" href="#how-it-works">
+          How selection works
+          <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg>
+        </a>
+      </div>
+    </div>
+
+    <div class="hero-icon">
+      <svg class="scale-svg" viewBox="0 0 280 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <line x1="140" y1="20" x2="140" y2="150" stroke="#7c5cff" stroke-width="6" stroke-linecap="round"/>
+        <line x1="40" y1="55" x2="240" y2="55" stroke="#7c5cff" stroke-width="6" stroke-linecap="round"/>
+        <circle cx="140" cy="20" r="8" fill="#7c5cff"/>
+        <!-- left pan -->
+        <line x1="40" y1="55" x2="40" y2="95" stroke="#a78bfa" stroke-width="3"/>
+        <line x1="10" y1="95" x2="70" y2="95" stroke="#a78bfa" stroke-width="3"/>
+        <path d="M10 95 Q40 125 70 95" fill="rgba(124,92,255,.25)" stroke="#7c5cff" stroke-width="3"/>
+        <!-- right pan -->
+        <line x1="240" y1="55" x2="240" y2="95" stroke="#a78bfa" stroke-width="3"/>
+        <line x1="210" y1="95" x2="270" y2="95" stroke="#a78bfa" stroke-width="3"/>
+        <path d="M210 95 Q240 125 270 95" fill="rgba(124,92,255,.25)" stroke="#7c5cff" stroke-width="3"/>
+        <!-- base -->
+        <path d="M110 150 L170 150 L160 170 L120 170 Z" fill="#7c5cff"/>
+        <rect x="120" y="145" width="40" height="10" rx="2" fill="#6b46e0"/>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHAT JURY DOES ══ -->
+<section class="section" id="what-it-does">
+  <div class="section-inner">
+    <span class="kicker reveal">The role</span>
+    <h2 class="heading reveal">What the<br>Jury <em>does.</em></h2>
+    <p class="subhead reveal">Lightweight, occasional, and focused on outcomes — not enforcement.</p>
+
+    <div class="role-grid stagger">
+      <div class="role-card">
+        <div class="role-card-icon">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+        <h3>Vote on difficult decisions</h3>
+        <p>When a call is genuinely hard — not a clear rule violation — Jury members vote to help reach a fair resolution.</p>
+      </div>
+      <div class="role-card">
+        <div class="role-card-icon">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </div>
+        <h3>Review edge-case situations</h3>
+        <p>Posts and disputes that don't fit neatly into the rulebook get a closer look from people who actually use the sub.</p>
+      </div>
+      <div class="role-card">
+        <div class="role-card-icon">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <h3>Guide fair outcomes</h3>
+        <p>Through discussion and polls, Jury members help the mod team land on decisions the community can actually trust.</p>
+      </div>
+    </div>
+
+    <div class="compare-grid reveal">
+      <div class="compare-card no">
+        <h4>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+          This is NOT
+        </h4>
+        <ul class="compare-list">
+          <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> A moderator position</li>
+          <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> A role with enforcement powers</li>
+          <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg> A daily or heavy workload</li>
+        </ul>
+      </div>
+      <div class="compare-card yes">
+        <h4>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+          This IS
+        </h4>
+        <ul class="compare-list">
+          <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22c997" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Occasional, lightweight participation</li>
+          <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22c997" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Voting only — no actions taken directly</li>
+          <li><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#22c997" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg> Open to any eligible member</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ HOW SELECTION WORKS ══ -->
+<section class="section" id="how-it-works" style="background:var(--bg1);">
+  <div class="section-inner">
+    <span class="kicker reveal">The process</span>
+    <h2 class="heading reveal">How selection<br><em>works.</em></h2>
+    <p class="subhead reveal">Four steps from application to invitation.</p>
+
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <div class="tl-dot-wrap"><div class="tl-dot">1</div></div>
+        <div class="tl-body">
+          <div class="tl-title">Apply</div>
+          <div class="tl-desc">Anyone can submit an application — fill in the form below. It takes a few minutes.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot-wrap"><div class="tl-dot">2</div></div>
+        <div class="tl-body">
+          <div class="tl-title">Eligibility check</div>
+          <div class="tl-desc">To qualify you'll need <strong>200+ community karma</strong>, an account that's been <strong>active in the subreddit</strong>, and a <strong>positive contribution history</strong>.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot-wrap"><div class="tl-dot">3</div></div>
+        <div class="tl-body">
+          <div class="tl-title">Review process</div>
+          <div class="tl-desc">Applications are scored on <strong>activity &amp; consistency</strong>, <strong>quality of contributions</strong>, and <strong>decision-making ability</strong> shown in your answers.</div>
+        </div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-dot-wrap"><div class="tl-dot">4</div></div>
+        <div class="tl-body">
+          <div class="tl-title">Invitation</div>
+          <div class="tl-desc">Selected members are invited into the Jury group, where voting on real cases takes place.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="req-chips reveal">
+      <div class="req-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg> 200+ community karma</div>
+      <div class="req-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Active in the subreddit</div>
+      <div class="req-chip"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg> Positive contribution history</div>
+    </div>
+
+    <div class="warn-box reveal">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <p><strong>Important:</strong> No enforcement powers are granted to Jury members. This is not a moderator position, and participation is expected to be occasional — not daily or heavy.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ APPLICATION FORM ══ -->
+<section class="section" id="apply">
+  <div class="apply-grid">
+
+    <!-- FORM COLUMN -->
+    <div>
+      <span class="kicker reveal">The application</span>
+      <h2 class="heading reveal">Apply to the<br><em>Jury.</em></h2>
+      <p class="subhead reveal" style="margin-bottom:1.6rem;">All fields are required. Answer honestly — your responses are how the review team gets to know you.</p>
+
+      <div class="form-wrapper">
+        <div class="prog-wrap" id="prog-wrap">
+          <div class="prog-track"><div class="prog-fill" id="pf"></div></div>
+          <span class="prog-txt" id="pt">0 / 11</span>
+        </div>
+
+        <div class="form-head" id="form-head">
+          <h2>Community Jury Application</h2>
+          <p>Internal backend — please apply using this page only.</p>
+        </div>
+
+        <iframe name="gf_target" id="gf_target" style="display:none" aria-hidden="true"></iframe>
+
+        <form
+          class="form-body"
+          id="gform"
+          action="https://docs.google.com/forms/d/e/1FAIpQLSfQT8U9tnbkXKKTRhsIGsz3YedjzFWISWc-NBWsiqDrZHPNRw/formResponse"
+          method="POST"
+          target="gf_target"
+          onsubmit="return doSubmit(event)"
+          novalidate>
+
+          <div class="q">
+            <div class="ql">Reddit username <span class="req">*</span></div>
+            <input class="field" type="text" name="entry.1474588698" id="f-username" placeholder="u/yourname" autocomplete="off">
+          </div>
+
+          <div class="q">
+            <div class="ql">Community karma <span class="req">*</span>
+              <span class="q-sub">Your current karma on r/MemeExchangeCommunism</span>
+            </div>
+            <input class="field" type="number" name="entry.1306348246" id="f-karma" placeholder="e.g. 450" autocomplete="off" inputmode="numeric">
+          </div>
+
+          <div class="q">
+            <div class="ql">Account age on the community <span class="req">*</span></div>
+            <div class="opts" id="opts-age">
+              <label class="opt"><input type="radio" name="entry.2089392323" value="Less than one week"><span class="otxt">Less than one week</span></label>
+              <label class="opt"><input type="radio" name="entry.2089392323" value="1-2Weeks"><span class="otxt">1–2 weeks</span></label>
+              <label class="opt"><input type="radio" name="entry.2089392323" value="2-4 weeks"><span class="otxt">2–4 weeks</span></label>
+              <label class="opt"><input type="radio" name="entry.2089392323" value="1+ Month"><span class="otxt">1+ month</span></label>
+            </div>
+          </div>
+
+          <div class="q">
+            <div class="ql">Have you actively participated in discussions? <span class="req">*</span></div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="entry.1497287152" value="Yes, Regularly"><span class="otxt">Yes, regularly</span></label>
+              <label class="opt"><input type="radio" name="entry.1497287152" value="Occasionally"><span class="otxt">Occasionally</span></label>
+              <label class="opt"><input type="radio" name="entry.1497287152" value="Rarely"><span class="otxt">Rarely</span></label>
+            </div>
+          </div>
+
+          <div class="q">
+            <div class="ql">Approximate number of posts + comments here <span class="req">*</span></div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="entry.238830709" value="0-5"><span class="otxt">0–5</span></label>
+              <label class="opt"><input type="radio" name="entry.238830709" value="6-20"><span class="otxt">6–20</span></label>
+              <label class="opt"><input type="radio" name="entry.238830709" value="21-50"><span class="otxt">21–50</span></label>
+              <label class="opt"><input type="radio" name="entry.238830709" value="50+"><span class="otxt">50+</span></label>
+            </div>
+          </div>
+
+          <div class="q">
+            <div class="ql">Quality of your contributions <span class="req">*</span>
+              <span class="q-sub">Be honest — this is self-assessed</span>
+            </div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="entry.1641412353" value="High"><span class="otxt">High</span></label>
+              <label class="opt"><input type="radio" name="entry.1641412353" value="Mixed"><span class="otxt">Mixed</span></label>
+              <label class="opt"><input type="radio" name="entry.1641412353" value="Low"><span class="otxt">Low</span></label>
+            </div>
+          </div>
+
+          <div class="q">
+            <div class="ql">A post gets heavily reported but has mixed community reactions. What do you do? <span class="req">*</span></div>
+            <textarea class="field" name="entry.1054795368" id="f-scenarioA" placeholder="Walk through how you'd approach this…"></textarea>
+            <div class="verdict-status" id="status-scenarioA"><span class="vs-emoji">🧠</span><span class="vs-text">Brainstorming</span><span class="vs-dots"><span></span><span></span><span></span></span></div>
+          </div>
+
+          <div class="q">
+            <div class="ql">Two users are arguing aggressively in a thread. How should it be handled? <span class="req">*</span></div>
+            <textarea class="field" name="entry.1356682831" id="f-scenarioB" placeholder="Walk through how you'd approach this…"></textarea>
+            <div class="verdict-status" id="status-scenarioB"><span class="vs-emoji">🧠</span><span class="vs-text">Brainstorming</span><span class="vs-dots"><span></span><span></span><span></span></span></div>
+          </div>
+
+          <div class="q">
+            <div class="ql">Can you consistently participate in jury voting? <span class="req">*</span></div>
+            <div class="opts" id="opts-commit">
+              <label class="opt"><input type="radio" name="entry.291936623" value="Yes"><span class="otxt">Yes</span></label>
+              <label class="opt"><input type="radio" name="entry.291936623" value="Sometimes"><span class="otxt">Sometimes</span></label>
+              <label class="opt"><input type="radio" name="entry.291936623" value="No"><span class="otxt">No</span></label>
+            </div>
+          </div>
+
+          <div class="q">
+            <div class="ql">Are you comfortable making unpopular decisions if required? <span class="req">*</span></div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="entry.1012656687" value="Yes"><span class="otxt">Yes</span></label>
+              <label class="opt"><input type="radio" name="entry.1012656687" value="No"><span class="otxt">No</span></label>
+              <label class="opt"><input type="radio" name="entry.1012656687" value="Maybe"><span class="otxt">Maybe</span></label>
+            </div>
+          </div>
+
+          <div class="q">
+            <div class="ql">Have you ever been banned or warned in this community? <span class="req">*</span></div>
+            <div class="opts">
+              <label class="opt"><input type="radio" name="entry.677054145" value="Yes"><span class="otxt">Yes</span></label>
+              <label class="opt"><input type="radio" name="entry.677054145" value="No"><span class="otxt">No</span></label>
+            </div>
+          </div>
+
+          <div class="errmsg" id="errmsg">⚠ Please fill in all required fields marked with * before submitting.</div>
+
+          <div class="sbar">
+            <button type="button" class="bclr" onclick="clearForm()">Clear all answers</button>
+            <button type="submit" class="bsub" id="sbtn">
+              <span id="bdot" class="bdot"></span>
+              <span id="blbl">Submit Application</span>
+            </button>
+          </div>
+        </form>
+
+        <div id="success">
+          <div class="sring">⚖️</div>
+          <h3>Application submitted!</h3>
+          <p>Your response has been recorded.<br>The review team will check your eligibility and be in touch if selected. Good luck!</p>
+          <a class="sub-link" href="https://www.reddit.com/r/memeexchangecommunism/" target="_blank">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><circle cx="12" cy="12" r="10"/><path d="M17.5 13c0-1.1-.9-2-2-2-.5 0-.9.2-1.3.5C13.1 11 12 10.4 12 10.4l.3-1.4 1.9.4c.1.6.6 1 1.2 1 .7 0 1.2-.5 1.2-1.2S16.1 8 15.4 8c-.5 0-.9.2-1.1.6L12.2 8l-.5 2.2c-1 0-1.9.6-2.9 1.1-.4-.3-.8-.5-1.3-.5-1.1 0-2 .9-2 2 0 .8.5 1.5 1.2 1.8v.4c0 1.8 2 3.2 4.4 3.2s4.4-1.4 4.4-3.2v-.4c.6-.3 1.1-1 1-1.6zm-9 0c0-.4.3-.8.8-.8s.8.3.8.8-.3.8-.8.8-.8-.3-.8-.8zm5.1 2.8c-.6.4-1.3.5-1.9.5s-1.3-.2-1.9-.5c-.1-.1-.1-.3 0-.3.1-.1.2-.1.3 0 .5.3 1 .4 1.6.4s1.1-.1 1.6-.4c.1-.1.2 0 .3 0 .1.1.1.2 0 .3zm-.3-2c-.4 0-.8-.3-.8-.8s.3-.8.8-.8.8.3.8.8-.3.8-.8.8z" fill="currentColor"/></svg>
+            Back to the subreddit
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIDEBAR COLUMN -->
+    <aside class="apply-side-col">
+      <div class="elig-card">
+        <div class="elig-head">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+          <div>
+            <h4>Live Eligibility Check</h4>
+            <span>Updates as you fill the form</span>
+          </div>
+        </div>
+        <div class="elig-body">
+          <div class="elig-row" id="row-karma">
+            <div class="elig-icon" id="icon-karma">–</div>
+            <div class="elig-label">200+ community karma</div>
+          </div>
+          <div class="elig-row" id="row-age">
+            <div class="elig-icon" id="icon-age">–</div>
+            <div class="elig-label">Account older than 1 week</div>
+          </div>
+          <div class="elig-row" id="row-commit">
+            <div class="elig-icon" id="icon-commit">–</div>
+            <div class="elig-label">Can commit to jury voting</div>
+          </div>
+
+          <div class="elig-status" id="elig-status">Fill in the highlighted fields to check your eligibility</div>
+          <div class="elig-note">This is an automatic estimate only. Final review is conducted by the Jury review team — you can still submit either way.</div>
+        </div>
+      </div>
+
+      <div class="info-card">
+        <h5>Why we ask all this</h5>
+        <ul>
+          <li>Karma &amp; activity show you actually use the sub</li>
+          <li>Scenario answers show how you'd reason through a hard call</li>
+          <li>Commitment questions make sure voting actually happens when needed</li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer class="footer">
+  <div class="footer-inner">
+    <div class="footer-brand">r/<em>MemeExchange</em>Communism</div>
+    <div class="footer-links">
+      <a href="memeexchangecommunism.html">Home</a>
+      <a href="news.html">News</a>
+      <a href="elections.html">Elections</a>
+      <a href="https://discord.gg/Sys5nNmfE7" target="_blank">Discord</a>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ── theme ── */
+function toggleTheme(){
+  var h=document.documentElement,d=h.getAttribute('data-theme')!=='light';
+  h.setAttribute('data-theme',d?'light':'dark');
+  document.getElementById('ico-sun').style.display=d?'none':'block';
+  document.getElementById('ico-moon').style.display=d?'block':'none';
+}
+document.getElementById('theme-btn').addEventListener('click',toggleTheme);
+document.documentElement.setAttribute('data-theme','dark');
+
+/* ── scroll reveal ── */
+var obs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); obs.unobserve(e.target); } });
+},{threshold:.08});
+document.querySelectorAll('.reveal,.reveal-left,.reveal-right,.stagger').forEach(function(el){ obs.observe(el); });
+
+/* ── tracked fields ── */
+var FIELDS=[
+  'entry.1474588698','entry.1306348246','entry.2089392323','entry.1497287152',
+  'entry.238830709','entry.1641412353','entry.1054795368','entry.1356682831',
+  'entry.291936623','entry.1012656687','entry.677054145'
+];
+var REQUIRED=FIELDS;
+var submitted=false;
+
+function getFieldValue(f,name){
+  var el=f.elements[name];
+  if(!el) return '';
+  if(el.type==='radio') return el.checked?el.value:'';
+  if(typeof el.value==='string' && el.length!==undefined) return el.value; // RadioNodeList
+  return el.value?el.value.trim():'';
+}
+
+function updateProgress(){
+  var f=document.getElementById('gform'),done=0;
+  FIELDS.forEach(function(n){ if(getFieldValue(f,n)) done++; });
+  document.getElementById('pf').style.width=Math.round(done/FIELDS.length*100)+'%';
+  document.getElementById('pt').textContent=done+' / '+FIELDS.length;
+}
+
+var gform=document.getElementById('gform');
+gform.addEventListener('input',updateProgress);
+gform.addEventListener('change',updateProgress);
+
+/* ── scroll reveal for questions ── */
+var qObs=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('vis'); qObs.unobserve(e.target); } });
+},{threshold:.08});
+document.querySelectorAll('.q').forEach(function(q){ qObs.observe(q); });
+
+/* ── LIVE ELIGIBILITY CHECK ── */
+function setIcon(id,state){
+  // state: 'pass' | 'fail' | 'neutral'
+  var icon=document.getElementById(id);
+  icon.className='elig-icon'+(state==='pass'?' pass':state==='fail'?' fail':'');
+  icon.innerHTML = state==='pass'
+    ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>'
+    : state==='fail'
+    ? '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>'
+    : '–';
+  var row=icon.closest('.elig-row');
+  row.classList.toggle('pass',state==='pass');
+}
+
+function checkEligibility(){
+  var karmaVal=document.getElementById('f-karma').value;
+  var ageEl=document.querySelector('input[name="entry.2089392323"]:checked');
+  var commitEl=document.querySelector('input[name="entry.291936623"]:checked');
+
+  var karmaState='neutral', ageState='neutral', commitState='neutral';
+  var karmaAnswered=karmaVal!=='', ageAnswered=!!ageEl, commitAnswered=!!commitEl;
+
+  if(karmaAnswered){
+    var k=parseInt(karmaVal,10);
+    karmaState = (!isNaN(k) && k>=200) ? 'pass' : 'fail';
+  }
+  if(ageAnswered){
+    ageState = (ageEl.value !== 'Less than one week') ? 'pass' : 'fail';
+  }
+  if(commitAnswered){
+    commitState = (commitEl.value !== 'No') ? 'pass' : 'fail';
+  }
+
+  setIcon('icon-karma', karmaState);
+  setIcon('icon-age', ageState);
+  setIcon('icon-commit', commitState);
+
+  var statusEl=document.getElementById('elig-status');
+  var allAnswered = karmaAnswered && ageAnswered && commitAnswered;
+
+  if(!allAnswered){
+    statusEl.className='elig-status';
+    statusEl.textContent='Fill in the highlighted fields to check your eligibility';
+    return;
+  }
+
+  var allPass = karmaState==='pass' && ageState==='pass' && commitState==='pass';
+  if(allPass){
+    statusEl.className='elig-status ok';
+    statusEl.textContent='✓ Looks like you meet the baseline requirements!';
+  } else {
+    statusEl.className='elig-status bad';
+    statusEl.textContent='⚠ You may not meet baseline requirements — you can still submit for manual review.';
+  }
+}
+
+document.getElementById('f-karma').addEventListener('input',checkEligibility);
+document.querySelectorAll('input[name="entry.2089392323"]').forEach(function(r){ r.addEventListener('change',checkEligibility); });
+document.querySelectorAll('input[name="entry.291936623"]').forEach(function(r){ r.addEventListener('change',checkEligibility); });
+
+/* ── VERDICT TYPING STATUS ── */
+var VERDICT_TIERS=[
+  {min:1,   max:15,   tier:1, emoji:'🧠', text:'Brainstorming'},
+  {min:16,  max:40,   tier:2, emoji:'🤔', text:'Weighing the options'},
+  {min:41,  max:90,   tier:2, emoji:'📜', text:'Building your case'},
+  {min:91,  max:160,  tier:3, emoji:'⚖️', text:'Judging'},
+  {min:161, max:99999,tier:4, emoji:'🔨', text:'Drafting your verdict'}
+];
+function tierFor(len){
+  for(var i=0;i<VERDICT_TIERS.length;i++){
+    if(len>=VERDICT_TIERS[i].min && len<=VERDICT_TIERS[i].max) return VERDICT_TIERS[i];
+  }
+  return null;
+}
+function attachVerdictTyping(textareaId,statusId){
+  var ta=document.getElementById(textareaId);
+  var pill=document.getElementById(statusId);
+  var emojiEl=pill.querySelector('.vs-emoji');
+  var textEl=pill.querySelector('.vs-text');
+  var idleTimer=null;
+
+  ta.addEventListener('input',function(){
+    var len=ta.value.trim().length;
+    if(len===0){
+      pill.classList.remove('show','active','idle');
+      clearTimeout(idleTimer);
+      return;
+    }
+    var t=tierFor(len);
+    if(t){
+      emojiEl.textContent=t.emoji;
+      textEl.textContent=t.text;
+      pill.className='verdict-status show active tier-'+t.tier;
+    }
+    clearTimeout(idleTimer);
+    idleTimer=setTimeout(function(){
+      pill.classList.remove('active');
+      pill.classList.add('idle');
+    },900);
+  });
+}
+attachVerdictTyping('f-scenarioA','status-scenarioA');
+attachVerdictTyping('f-scenarioB','status-scenarioB');
+
+/* ── option select "pop" feedback ── */
+document.querySelectorAll('.opt input[type="radio"]').forEach(function(r){
+  r.addEventListener('change',function(){
+    document.querySelectorAll('input[name="'+r.name+'"]').forEach(function(g){
+      g.closest('.opt').classList.remove('pop');
+    });
+    var label=r.closest('.opt');
+    label.classList.add('pop');
+    label.addEventListener('animationend',function(){ label.classList.remove('pop'); },{once:true});
+  });
+});
+
+/* ── validation ── */
+function validate(){
+  var f=document.getElementById('gform');
+  for(var i=0;i<REQUIRED.length;i++){ if(!getFieldValue(f,REQUIRED[i])) return false; }
+  return true;
+}
+
+/* ── submit ── */
+function doSubmit(e){
+  var err=document.getElementById('errmsg');
+  if(!validate()){
+    e.preventDefault();
+    err.style.display='block';
+    err.scrollIntoView({behavior:'smooth',block:'center'});
+    return false;
+  }
+  err.style.display='none';
+  submitted=true;
+
+  var btn=document.getElementById('sbtn');
+  btn.classList.add('loading');
+  document.getElementById('bdot').className='spin';
+  document.getElementById('blbl').textContent='Submitting…';
+
+  setTimeout(showSuccess,3000);
+  return true;
+}
+
+document.getElementById('gf_target').addEventListener('load',function(){
+  if(submitted) showSuccess();
+});
+
+function showSuccess(){
+  if(!submitted) return;
+  submitted=false;
+  document.getElementById('prog-wrap').style.display='none';
+  document.getElementById('form-head').style.display='none';
+  document.getElementById('gform').style.display='none';
+  document.getElementById('success').style.display='block';
+  document.getElementById('success').scrollIntoView({behavior:'smooth',block:'center'});
+}
+
+function clearForm(){
+  if(confirm('Clear all answers?')){
+    document.getElementById('gform').reset();
+    document.getElementById('errmsg').style.display='none';
+    updateProgress();
+    checkEligibility();
+  }
+}
+</script>
+</body>
+</html>
