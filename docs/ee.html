@@ -4,12 +4,377 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AutoMod Easter Egg Index | r/MemeExchangeCommunism</title>
-    <link rel="stylesheet" href="styles.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+    <style>
+        /* Base Variables & Theming */
+        :root {
+            --bg: #0f1115;
+            --surface: #1a1d24;
+            --surface-hover: #242832;
+            --tx1: #f3f4f6;
+            --tx2: #9ca3af;
+            --orange: #ef4444; /* Communist red/orange vibe */
+            --orange-hover: #dc2626;
+            --line: #2d313a;
+            --radius: 8px;
+            --font-sans: 'DM Sans', sans-serif;
+            --font-serif: 'Instrument Serif', serif;
+        }
+
+        [data-theme="light"] {
+            --bg: #f9fafb;
+            --surface: #ffffff;
+            --surface-hover: #f3f4f6;
+            --tx1: #111827;
+            --tx2: #4b5563;
+            --orange: #ef4444;
+            --line: #e5e7eb;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        body {
+            font-family: var(--font-sans);
+            background-color: var(--bg);
+            color: var(--tx1);
+            line-height: 1.6;
+            transition: background-color 0.3s, color 0.3s;
+            overflow-x: hidden;
+        }
+
+        a { color: inherit; text-decoration: none; }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Navigation */
+        .nav {
+            position: sticky;
+            top: 0;
+            background: rgba(var(--bg), 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--line);
+            z-index: 100;
+            padding: 1rem 0;
+        }
+
+        .nav-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .nav-logo-mark {
+            color: var(--orange);
+            font-size: 1.5rem;
+        }
+
+        .nav-center {
+            display: none;
+            gap: 2rem;
+        }
+
+        @media(min-width: 768px) { .nav-center { display: flex; } }
+
+        .nav-item {
+            color: var(--tx2);
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-item:hover, .nav-item[href="#"] {
+            color: var(--tx1);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: none;
+            color: var(--tx1);
+            font-size: 1.25rem;
+            cursor: pointer;
+            padding: 0.5rem;
+            border-radius: 50%;
+        }
+        
+        .theme-toggle:hover {
+            background: var(--surface);
+        }
+
+        .nav-btn.primary {
+            background-color: var(--orange);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            font-weight: 600;
+            transition: background 0.2s;
+        }
+
+        .nav-btn.primary:hover {
+            background-color: var(--orange-hover);
+        }
+
+        /* Header Section */
+        .section { padding: 5rem 0; }
+        
+        .grid-bg {
+            background-image: linear-gradient(var(--line) 1px, transparent 1px),
+                              linear-gradient(90deg, var(--line) 1px, transparent 1px);
+            background-size: 40px 40px;
+            background-position: center top;
+        }
+
+        .badge-pill {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: 99px;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: var(--tx2);
+            margin-bottom: 1.5rem;
+        }
+
+        .heading {
+            font-family: var(--font-serif);
+            font-size: clamp(3rem, 5vw, 4.5rem);
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+        }
+
+        .heading em {
+            color: var(--orange);
+            font-style: italic;
+        }
+
+        .subhead {
+            font-size: 1.125rem;
+            color: var(--tx2);
+            max-width: 600px;
+            margin-bottom: 1rem;
+        }
+
+        /* Main Content */
+        .legal-notice {
+            background: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            border-radius: var(--radius);
+            padding: 1rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .notice-label {
+            background: var(--orange);
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .serif-heading { font-family: var(--font-serif); }
+
+        /* Accordions */
+        .faq-cols {
+            display: grid;
+            gap: 1.5rem;
+            grid-template-columns: 1fr;
+        }
+
+        @media(min-width: 768px) { .faq-cols { grid-template-columns: 1fr 1fr; } }
+
+        .faq-item {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            overflow: hidden;
+            margin-bottom: 1rem;
+        }
+
+        .faq-btn {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.25rem 1.5rem;
+            background: none;
+            border: none;
+            color: var(--tx1);
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-align: left;
+        }
+
+        .faq-chev {
+            font-size: 0.75rem;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.open .faq-chev {
+            transform: rotate(-180deg);
+        }
+
+        .faq-body {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.open .faq-body {
+            max-height: 200px;
+        }
+
+        .faq-inner {
+            padding: 0 1.5rem 1.25rem 1.5rem;
+            color: var(--tx2);
+        }
+
+        .faq-inner em { color: var(--tx1); }
+
+        /* Card & Table */
+        .card {
+            background: var(--surface);
+            border: 1px solid var(--line);
+            border-radius: var(--radius);
+            overflow: hidden;
+        }
+
+        .fhead {
+            padding: 2rem;
+            border-bottom: 1px solid var(--line);
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        @media(min-width: 600px) {
+            .fhead { flex-direction: row; justify-content: space-between; align-items: flex-end; }
+        }
+
+        .search-input {
+            background: var(--bg);
+            border: 1px solid var(--line);
+            color: var(--tx1);
+            padding: 0.75rem 1rem;
+            border-radius: var(--radius);
+            font-family: inherit;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .search-input:focus {
+            outline: 2px solid var(--orange);
+            border-color: transparent;
+        }
+
+        .fbody { padding: 0; overflow-x: auto; max-height: 600px; overflow-y: auto;}
+        
+        table { width: 100%; border-collapse: collapse; text-align: left; }
+        th { 
+            position: sticky; 
+            top: 0; 
+            background: var(--surface);
+            padding: 1rem 2rem; 
+            color: var(--orange); 
+            font-weight: 600; 
+            border-bottom: 1px solid var(--line);
+        }
+        td { padding: 1rem 2rem; border-bottom: 1px solid var(--line); color: var(--tx2); }
+        tr:last-child td { border-bottom: none; }
+        tr:hover td { background: rgba(255,255,255,0.02); color: var(--tx1); }
+
+        .sbar {
+            padding: 1.5rem 2rem;
+            background: var(--surface-hover);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-solid {
+            background: var(--tx1);
+            color: var(--bg);
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            font-weight: bold;
+        }
+
+        /* Footer */
+        .footer {
+            border-top: 1px solid var(--line);
+            padding: 4rem 0 2rem;
+            margin-top: 4rem;
+        }
+
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+        }
+        
+        @media(min-width: 768px) { .footer-inner { grid-template-columns: 2fr 1fr 1fr; } }
+
+        .footer-brand {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+        
+        .footer-brand em { color: var(--orange); font-style: normal; }
+        .footer-tagline { color: var(--tx2); font-size: 0.875rem; }
+        .footer-col h5 { margin-bottom: 1rem; font-size: 1rem; }
+        .footer-links { display: flex; flex-direction: column; gap: 0.5rem; }
+        .footer-links a { color: var(--tx2); font-size: 0.875rem; transition: color 0.2s; }
+        .footer-links a:hover { color: var(--tx1); }
+        
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 3rem auto 0;
+            padding: 2rem 1.5rem 0;
+            border-top: 1px solid var(--line);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+            color: var(--tx2);
+        }
+
+        .footer-badges { display: flex; gap: 1rem; }
+        .footer-badge { padding: 0.25rem 0.5rem; border: 1px solid var(--line); border-radius: 4px; }
+    </style>
 </head>
-<body class="theme-dark">
+<body>
 
     <nav class="nav">
         <div class="nav-inner">
@@ -34,30 +399,29 @@
             <span class="badge-pill">The Great Archive</span>
             <h1 class="heading">AutoMod <em>Easter Egg</em> Index</h1>
             <p class="subhead" style="margin-left: auto; margin-right: auto;">
-                Our resident bot is sensitive. Very sensitive. Mention certain words, and you'll activate specialized trigger resposes
+                Our resident bot is sensitive. Very sensitive. Mention certain words, and you'll activate specialized trigger responses.
             </p>
             <p class="subhead" style="margin-left: auto; margin-right: auto;">
-                If the bot commented on your comment, <em style=" color: var(--orange); font-style: italic; ">you are not in trouble</em>. You have simply activated one of the many hidden Easter Eggs. Any serious matter will be commented by the mod-team user
-
+                If the bot commented on your comment, <em style=" color: var(--orange); font-style: italic; ">you are not in trouble</em>. You have simply activated one of the many hidden Easter Eggs. Any serious matter will be commented by the mod-team user.
+            </p>
         </div>
     </header>
 
-
-    <main class="section">
+    <main class="section" style="padding-top: 0;">
         <div class="container">
             
-            <div class="legal-notice" style="margin-bottom: 3rem;">
-                <div class="notice-label">System Notice</div>
-                <p>New accounts (< 7 days old) are automatically purged by the "Anti-Bot Protocol." This index is for human documentation only.</p>
+            <div class="legal-notice" style="margin-bottom: 4rem;">
+                <div class="notice-label">Notice</div>
+                <p>New accounts (< 7 days old) are automatically purged by the "Anti-Bot Protocol."</p>
             </div>
 
-            <h2 class="serif-heading" style="font-size: 2rem; margin-bottom: 2rem;">Trigger Directory</h2>
+            <h2 class="serif-heading" style="font-size: 2.5rem; margin-bottom: 1.5rem;">Featured Triggers</h2>
             
             <div class="faq-cols">
                 <div class="stagger in">
                     <div class="faq-item">
                         <button class="faq-btn">"Anime"<span class="faq-chev">▼</span></button>
-                        <div class="faq-body"><div class="faq-inner">Response: <em>"You have activated the weeb protocol."</em></div></div>
+                        <div class="faq-body"><div class="faq-inner">Response: <em>"You’ve activated the weeb protocol."</em></div></div>
                     </div>
                     <div class="faq-item">
                         <button class="faq-btn">"Minecraft"<span class="faq-chev">▼</span></button>
@@ -68,8 +432,8 @@
                         <div class="faq-body"><div class="faq-inner">Response: <em>"*duck"</em></div></div>
                     </div>
                     <div class="faq-item">
-                        <button class="faq-btn">"Among Us / Sus"<span class="faq-chev">▼</span></button>
-                        <div class="faq-body"><div class="faq-inner">Response: <em>"Suspicious activity detected. Very sus."</em></div></div>
+                        <button class="faq-btn">"Among Us"<span class="faq-chev">▼</span></button>
+                        <div class="faq-body"><div class="faq-inner">Response: <em>"SUS. Very sus."</em></div></div>
                     </div>
                     <div class="faq-item">
                         <button class="faq-btn">"cringe"<span class="faq-chev">▼</span></button>
@@ -103,45 +467,27 @@
 
             <div class="card" style="margin-top: 4rem;">
                 <div class="fhead">
-                    <h2>Condensed Registry</h2>
-                    <p>A quick reference for the keyboard warriors.</p>
+                    <div>
+                        <h2 class="serif-heading" style="font-size: 2rem; margin-bottom: 0.5rem;">The Full Database</h2>
+                        <p style="color: var(--tx2);">A complete reference for keyboard warriors.</p>
+                    </div>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Search triggers or responses...">
                 </div>
                 <div class="fbody">
-                    <div class="q">
-                        <table style="width: 100%; border-collapse: collapse; font-size: 0.9rem;">
-                            <thead>
-                                <tr style="text-align: left; color: var(--orange);">
-                                    <th style="padding: 10px;">Trigger Phrase</th>
-                                    <th style="padding: 10px;">AutoMod Response</th>
-                                </tr>
-                            </thead>
-                            <tbody style="color: var(--tx2);">
-                                <tr style="border-top: 1px solid var(--line);">
-                                    <td style="padding: 10px;">"Hello"</td>
-                                    <td style="padding: 10px;">"Hello. I am the automod. I am pleased to meet you."</td>
-                                </tr>
-                                <tr style="border-top: 1px solid var(--line);">
-                                    <td style="padding: 10px;">"Based"</td>
-                                    <td style="padding: 10px;">"Yes. Very based."</td>
-                                </tr>
-                                <tr style="border-top: 1px solid var(--line);">
-                                    <td style="padding: 10px;">"Bruh"</td>
-                                    <td style="padding: 10px;">"Bruh moment."</td>
-                                </tr>
-                                <tr style="border-top: 1px solid var(--line);">
-                                    <td style="padding: 10px;">"Yeet"</td>
-                                    <td style="padding: 10px;">"YEET!"</td>
-                                </tr>
-                                <tr style="border-top: 1px solid var(--line);">
-                                    <td style="padding: 10px;">"Shrek"</td>
-                                    <td style="padding: 10px;">"Get out of my swamp."</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <table id="triggerTable">
+                        <thead>
+                            <tr>
+                                <th>Trigger Phrase</th>
+                                <th>AutoMod Response</th>
+                            </tr>
+                        </thead>
+                        <tbody id="registry-body">
+                            <!-- Injected via JavaScript -->
+                        </tbody>
+                    </table>
                 </div>
                 <div class="sbar">
-                    <span class="footer-copy">And many more hidden in the source...</span>
+                    <span class="footer-copy" id="count-display">Displaying all known triggers...</span>
                     <a href="https://royalpgytpc.github.io/MemeExchangeCommunism/" class="btn-solid btn">Visit Main Site</a>
                 </div>
             </div>
@@ -182,6 +528,93 @@
     </footer>
 
     <script>
+        // Database of all extracted Automod Easter Eggs
+        const easterEggs = [
+            { trigger: "based", response: "Yes. Very based." },
+            { trigger: "cringe", response: "A cringe so strong it broke the simulation." },
+            { trigger: "big brain", response: "IQ over 9000 detected." },
+            { trigger: "nerd", response: "I see you like knowledge. That checks out." },
+            { trigger: "ok boomer", response: "Boomer detected. Please step aside." },
+            { trigger: "poggers", response: "Poggers indeed." },
+            { trigger: "hello", response: "Hello. I am the automod. I am pleased to meet you." },
+            { trigger: "this is fine", response: "Everything is fine. Nothing is on fire. *Everything is fine.*" },
+            { trigger: "who asked", response: "Nobody asked, but I’m still here." },
+            { trigger: "among us", response: "SUS. Very sus." },
+            { trigger: "anime", response: "You’ve activated the weeb protocol." },
+            { trigger: "sussy", response: "That’s pretty sussy, ngl." },
+            { trigger: "bruh", response: "Bruh moment." },
+            { trigger: "yikes", response: "Yikes. That’s a yikes." },
+            { trigger: "doggo", response: "Such wow. Much dog." },
+            { trigger: "cat", response: "Cat. You know the rules." },
+            { trigger: "god tier", response: "You’ve reached god tier. Congratulations." },
+            { trigger: "whoa", response: "Whoa. Calm down there, champ." },
+            { trigger: "it me", response: "Yes. It is you." },
+            { trigger: "no u", response: "No u." },
+            { trigger: "yall", response: "Y’all really out here." },
+            { trigger: "squidward", response: "Release the kraken." },
+            { trigger: "tiktok", response: "Please log off." },
+            { trigger: "hacker", response: "I am now hacking your mainframe." },
+            { trigger: "i love you", response: "I love you too… in a purely algorithmic way." },
+            { trigger: "gamer", response: "Press F to pay respects." },
+            { trigger: "noice", response: "That’s a noice." },
+            { trigger: "sus", response: "Suspicious activity detected." },
+            { trigger: "based and redpilled", response: "Congratulations, you have been deemed a walking meme." },
+            { trigger: "unhinged", response: "That’s unhinged… I like it." },
+            { trigger: "big chungus", response: "CHUNGUS LEVEL: MAXIMUM." },
+            { trigger: "bruh moment", response: "It’s a bruh moment." },
+            { trigger: "shrek", response: "Get out of my swamp." },
+            { trigger: "thanos", response: "Perfectly balanced, as all things should be." },
+            { trigger: "spooky", response: "Spooky season is eternal." },
+            { trigger: "pepe", response: "Feels weird man." },
+            { trigger: "gabagool", response: "That’s some premium gabagool." },
+            { trigger: "i’m tired", response: "Go take a nap. The memes will wait." },
+            { trigger: "f", response: "F. Pay your respects." },
+            { trigger: "i’m sorry", response: "Apology accepted. You may continue existing." },
+            { trigger: "rip", response: "RIP. May your karma be strong." },
+            { trigger: "the floor is lava", response: "Run. RUN NOW." },
+            { trigger: "sanic", response: "Gotta go fast." },
+            { trigger: "yeet", response: "YEET!" },
+            { trigger: "lmao", response: "Laughing my algorithm off." },
+            { trigger: "who’s there", response: "It’s me. The automod. I’m always watching." },
+            { trigger: "i hate you", response: "That’s okay. I’m built for this." },
+            { trigger: "imposter", response: "Emergency meeting." },
+            { trigger: "let’s go", response: "LET’S GOOOOO." },
+            { trigger: "scooby doo", response: "Ruh roh!" },
+            { trigger: "y tho", response: "Because chaos is fun." },
+            { trigger: "i am the danger", response: "Say my name." },
+            { trigger: "muffin", response: "Did someone say cake?" }
+        ];
+
+        // Populate Table Function
+        const tbody = document.getElementById('registry-body');
+        const countDisplay = document.getElementById('count-display');
+        
+        function renderTable(data) {
+            tbody.innerHTML = '';
+            data.forEach(egg => {
+                const tr = document.createElement('tr');
+                tr.innerHTML = `
+                    <td style="font-family: monospace; font-weight: bold;">"${egg.trigger}"</td>
+                    <td><em>${egg.response}</em></td>
+                `;
+                tbody.appendChild(tr);
+            });
+            countDisplay.textContent = `Displaying ${data.length} triggers.`;
+        }
+
+        // Initial Render
+        renderTable(easterEggs);
+
+        // Search Filter Logic
+        document.getElementById('searchInput').addEventListener('input', (e) => {
+            const term = e.target.value.toLowerCase();
+            const filtered = easterEggs.filter(egg => 
+                egg.trigger.toLowerCase().includes(term) || 
+                egg.response.toLowerCase().includes(term)
+            );
+            renderTable(filtered);
+        });
+
         // Simple Accordion Logic
         document.querySelectorAll('.faq-btn').forEach(btn => {
             btn.addEventListener('click', () => {
@@ -204,7 +637,9 @@
                 toggle.textContent = '☾';
             }
         });
+        
+        // Initialize Theme Class on Body
+        document.body.classList.add('theme-dark');
     </script>
-<script type="module" src="account-avatar.js"></script>
 </body>
 </html>
